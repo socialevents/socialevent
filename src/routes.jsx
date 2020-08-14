@@ -4,12 +4,11 @@ import App from '../src/app/layout/App';
 import EventDashboard from '../src/features/events/EventDashboard';
 
 
+
 export default (
   <Switch>
-    <Route exact path='/' component={Landing}/>
-    <Route path='/events' component={EventDashboard} />
+    <Route exact path='/' component={EventDashboard}/>
     <Route path='/event/:eventid' component={Event} />
     <Route path='/createevent' component={CreateEvent}/>
-    <Route path='/profile/:userid' component={Profile}/>
   </Switch>
 )
