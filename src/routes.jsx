@@ -1,7 +1,7 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 import App from '../src/app/layout/App';
-import EventDashboard from '../src/features/events/EventDashboard';
+import EventDashboard from './features/events/EventDashboard/EventDashboard';
 
 
 

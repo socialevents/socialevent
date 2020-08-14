@@ -1,8 +1,12 @@
+//This should show the new events and canceled events
+//Display on the right side of the EventDashboard **SIMPLE LIST**
+
+
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
 
 
-class EventDashboard extends Component {
+class RecentActivity extends Component {
     render() {
         return (
             <Grid>
@@ -17,4 +21,4 @@ class EventDashboard extends Component {
     }
 }
 
-export default EventDashboard;
+export default RecentActivity;
