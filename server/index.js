@@ -1,14 +1,23 @@
 require('dotenv').config();
-const express = require('express');
-const emailCtrl = require('./controllers/emailController');
-const eventsCtrl = require('./controllers/eventsController');
-const firebase = require('firebase');
-const app = express();
+const express = require('express'),
+      emailCtrl = require('./controllers/emailController'),
+      eventsCtrl = require('./controllers/eventsController'),
+      usersCtrl = require('./controllers/usersController'),
+      firebase = require('firebase'),
+      session = require('express-session'),
+      app = express(),
+      {SESSION_SECRET, FIREBASE_API_KEY} = process.env;
 
 app.use(express.json());
 
+app.use(session({
+    resave: false,
+    saveUninitialized:true,
+    secret: SESSION_SECRET
+}))
+
 const config = {
-    apiKey: "AIzaSyCQ8ekSC_ihYteUPp5X6ZhbnUdkTiHo_Io",
+    apiKey: FIREBASE_API_KEY,
     authDomain: "socailevent.firebaseapp.com",
     databaseURL: "https://socailevent.firebaseio.com",
     projectId: "socailevent",
@@ -22,9 +31,17 @@ firebase.initializeApp(config);
 
 app.get("/api/email", emailCtrl.sendEmail)
 
-app.get("/api/posts", eventsCtrl.getEvents);
-app.post("/api/posts", eventsCtrl.addEvent);
-app.put("/api/posts/:id", eventsCtrl.updateEvent);
-app.delete("/api/posts/:id", eventsCtrl.deleteEvent);
+app.get("/api/events", eventsCtrl.getEvents);
+app.post("/api/events", eventsCtrl.addEvent);
+app.put("/api/events/:id", eventsCtrl.updateEvent);
+app.delete("/api/events/:id", eventsCtrl.deleteEvent);
+
+app.post("/api/register", usersCtrl.register);
+app.post("/api/login", usersCtrl.login);
+app.get("/api/logout", usersCtrl.logout);
+app.get("/api/session", usersCtrl.sessionLogin);
+
+app.delete('/api/users/:id', usersCtrl.deleteUser);
+app.put('/api/users/:id', usersCtrl.updateUser);
 
 app.listen(3030, () => console.log('listening'));

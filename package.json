@@ -5,8 +5,10 @@
   "main": "./server/index",
   "proxy": "http://localhost:3030",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "cuid": "^2.1.1",
     "date-fns": "^1.29.0",
+    "express-session": "^1.17.1",
     "firebase": "^7.18.0",
     "firebase-admin": "^9.1.0",
     "firebase-functions": "^3.9.1",
