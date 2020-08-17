@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 module.exports = {
     register: async (req, res) => {
         const db = firebase.firestore();
-        const {username, password, email, profile_pic} = req.body;
+        const {username, password, email} = req.body;
         const user = await db.collection('users').where('username', '==', username).get();
         users = [];
         user.forEach(doc => users.push(doc.data()));
@@ -12,8 +12,8 @@ module.exports = {
         if (users[0]) return res.status(200).send('Username already taken');
 
         const hash = bcrypt.hashSync(password, 10);
-        const newUser = await db.collection('users').add({username, hash, email, profile_pic});
-        req.session.user = {username, email, profile_pic, id:newUser.id};
+        const newUser = await db.collection('users').add({username, hash, email});
+        req.session.user = {username, email, id:newUser.id, profile_pic: '', name:'', gender:'', dob:'', location:'', description:''};
 
         return res.status(200).send(req.session.user);
     },
@@ -59,9 +59,9 @@ module.exports = {
     },
     updateUser: async (req, res) => {
         const {id} = req.params;
-        const {username, profile_pic} = req.body;
+        const {name, gender, dob, location, description, profile_pic} = req.body;
         const db = firebase.firestore();
-        const data = await db.collection('users').doc(`${id}`).set({username, profile_pic});
+        const data = await db.collection('users').doc(`${id}`).set({name, gender, dob, location,description, profile_pic}, { merge: true });
         res.sendStatus(200);
     }
 }
