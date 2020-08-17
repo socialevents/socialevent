@@ -10,5 +10,7 @@ export default (
     <Route exact path='/' component={EventDashboard}/>
     <Route path='/event/:eventid' component={Event} />
     <Route path='/createevent' component={CreateEvent}/>
+    <Route path='/profile/:userid' component={Profile} />
+    <Route path='/settings/:userid' component={Settings}/>
   </Switch>
 )
