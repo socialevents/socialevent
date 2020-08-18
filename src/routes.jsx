@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import App from "../src/app/layout/App";
-import EventDashboard from "./features/events/EventDashboard/EventDashboard";
+import EventDashboard from './features/event/EventDashboard/EventDashboard'
 import BasicInfo from "./features/nav/Profile/Settings/BasicInfo";
 import AboutMe from "./features/nav/Profile/Settings/AboutMe";
 import MyPhotos from "./features/nav/Profile/Settings/MyPhotos";
