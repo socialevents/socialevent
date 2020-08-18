@@ -1,17 +1,21 @@
 import React, { Component } from 'react'
 import { Segment, Form, Button } from 'semantic-ui-react'
 
- class EventForm extends Component {
-  state = {
-    event: {
+const emptyEvent = {
       title: '',
       date: '',
       city: '',
       venue: '',
       hostedBy: ''
-    }
+}
+ class EventForm extends Component {
+  state = {
+    event: emptyEvent
   }
 
+  componentDidMount() {
+    
+  }
 
   onFormSubmit = (evt) => {
     evt.preventDefault();
