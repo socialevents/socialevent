@@ -1,3 +1,9 @@
+// Display all events with {EVENT NAME, HOST, DATE, LOCATION, GENRE}
+// Has a VIEW Button that links to Event.jsx with its id in the route.
+
+//HAVE A FILTER TO VIEW CERTAIN EVENTS
+
+
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
 

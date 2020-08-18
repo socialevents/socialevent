@@ -1,15 +1,12 @@
-// ON THE RIGHT WE HAVE THE AMOUNT OF PEOPLE GOING TO THE EVENT
+//This should show the new events and canceled events
+//Display on the right side of the EventDashboard **SIMPLE LIST**
 
-//DISPLAY ALL INFORMATION ABOUT THE EVENT
-//SHOW MAP TO LOCATION
-
-//JOIN BUTTON TO JOIN THE EVENT
 
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
 
 
-class Event extends Component {
+class RecentActivity extends Component {
     render() {
         return (
             <Grid>
@@ -24,4 +21,4 @@ class Event extends Component {
     }
 }
 
-export default Event;
+export default RecentActivity;
