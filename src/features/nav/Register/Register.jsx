@@ -7,6 +7,7 @@ import { Button } from 'semantic-ui-react'
             <Form onSubmit={this.handleSubmit} error={Boolean(err)}>
             <Form.Input label="Name" name="name" type="text"/>
             <Form.Input label="Gender" name="gender" type="text"/>
+            <Form.Input label="Location" name="location" type="text"/>
             <Form.Input label="Email" name="email" type="text"/>
             <Form.Input label="Password" name="password" type="password"/>
             <Form.Input label="Confirm Password" name="confirmPassword" type="password"/>
