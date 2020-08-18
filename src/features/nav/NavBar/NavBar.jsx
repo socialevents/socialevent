@@ -1,6 +1,8 @@
+
 import React, { Component } from "react";
 import { Menu, Container, Button } from "semantic-ui-react";
 import "semantic-ui-css/semantic.min.css";
+
 
 class NavBar extends Component {
   render() {
