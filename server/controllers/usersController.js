@@ -61,7 +61,7 @@ module.exports = {
         const {id} = req.params;
         const {name, gender, dob, location, description, profile_pic} = req.body;
         const db = firebase.firestore();
-        const data = await db.collection('users').doc(`${id}`).set({name, gender, dob, location,description, profile_pic}, { merge: true });
+        const data = await db.collection('users').doc(`${id}`).set({name, gender, dob, hometown, description, profile_pic}, { merge: true });
         res.sendStatus(200);
     }
 }
