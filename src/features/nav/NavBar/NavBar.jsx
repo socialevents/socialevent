@@ -4,7 +4,7 @@ import { Menu, Container, Button } from "semantic-ui-react";
 import Login from '../Login/Login'
 import {Link} from 'react-router-dom';
 import "semantic-ui-css/semantic.min.css";
-import { NavLink, Link} from 'react-router-dom'
+import { NavLink} from 'react-router-dom'
 
 
 class NavBar extends Component {
