@@ -2,9 +2,21 @@ import React, { Component } from 'react';
 import { Container, Button } from 'semantic-ui-react';
 
  class Login extends Component {
+    constructor(props){
+        super(props)
+        this.state={
+            registered: true,
+            email: '',
+            password: ''
+            
+        }
+
+
+       
+    }
     render() {
         return (
-           <Container>
+        
                 <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
     <Grid.Column style={{ maxWidth: 450 }}>
       <Header as='h2' color='teal' textAlign='center'>
@@ -34,12 +46,12 @@ import { Container, Button } from 'semantic-ui-react';
 )
 
 
-           </Container>
+       
   
                      
               
-        )
+        }
     }
-}
+
 
 export default Login;
