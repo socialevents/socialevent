@@ -20,7 +20,7 @@ class NavBar extends Component {
             <Button floated="right" positive inverted content="Create Event" />
             
           </Menu.Item>
-          <Link to='/login'>
+          
           <Menu.Item position="right">
             <Button basic inverted content="Login"  />
            
@@ -30,7 +30,7 @@ class NavBar extends Component {
               content="Sign Out"
               style={{ marginLeft: "0.5em" }}
             />
-          </Menu.Item></Link>
+          </Menu.Item>
           <Menu.Item name="Profile" />
           <Menu.Item></Menu.Item>
         </Container>
