@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Grid, Button } from 'semantic-ui-react'
 import EventList from '../EventsList/EventList'
 import EventForm from '../EventForm/EventForm';
+import axios from 'axios';
 import cuid from 'cuid';
 // import { addMilliseconds } from 'date-fns';
 
@@ -63,7 +64,15 @@ const eventsDashboard = [
             isOpen: false,
             selectedEvent: null
          }
-     
+  
+  componentDidMount = () => {
+    axios.get('/api/events')
+    .then(res => {
+      this.setState({
+        events: res.data
+      })
+    })
+  }
 
   handleFormOpen = () => {
     this.setState({
@@ -79,16 +88,20 @@ const eventsDashboard = [
   }
 
   handleUpdateEvent = (updatedEvent) => {
-    this.setState({
-      events: this.state.events.map(event => {
-        if (event.id === updatedEvent.id) {
-          return Object.assign({}, updatedEvent)
-        } else {
-          return event 
-        }
-      }),
-      isOpen:false,
-      selectedEvent:null
+    console.log(updatedEvent.id);
+    axios.put(`/api/events/${updatedEvent.id}`, updatedEvent)
+    .then(res => {
+      this.setState({
+        events: this.state.events.map(event => {
+          if (event.id === updatedEvent.id) {
+            return Object.assign({}, updatedEvent)
+          } else {
+            return event 
+          }
+        }),
+        isOpen:false,
+        selectedEvent:null
+      })
     })
   }
 
@@ -100,19 +113,23 @@ const eventsDashboard = [
   }
   
   handleCreateEvent = (newEvent) => {
-    newEvent.id = cuid();
-    newEvent.hostPhotoURL = '/assets/user.png';
-    const updatedEvents= [...this.state.events, newEvent];
-    this.setState({
-      events: updatedEvents,
-      isOpen: false
+    axios.post('/api/events/', newEvent).then(res => {
+      newEvent.id = res.data;
+      newEvent.hostPhotoURL = '/assets/user.png';
+      const updatedEvents= [...this.state.events, newEvent];
+      this.setState({
+        events: updatedEvents,
+        isOpen: false
+      })
     })
   }
 
   handleDeleteEvent = (eventId) => () => {
-    const updatedEvents = this.state.events.filter(e => e.id !== eventId);
-    this.setState({
-      events: updatedEvents
+    axios.delete(`/api/events/${eventId}`).then(res => {
+      const updatedEvents = this.state.events.filter(e => e.id !== eventId);
+      this.setState({
+        events: updatedEvents
+      })
     })
   }
 
