@@ -1,5 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Marvel');
+@import url('https://fonts.googleapis.com/css?family=Economica');
+
+
 body {
   background-color: rgb(234, 234, 234) !important;
+}
+
+.eventlist h1{
+  font-family: 'Marvel';
 }
 
 /*timepicker style*/
