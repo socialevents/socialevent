@@ -1,20 +1,116 @@
-import React, { Component } from 'react';
-import { Grid } from 'semantic-ui-react';
+import React, { Component } from 'react'
+import { Grid, Button } from 'semantic-ui-react'
+import EventList from '../EventsList/EventList'
+import EventForm from '../EventForm/EventForm';
+import cuid from 'cuid';
+import { addMilliseconds } from 'date-fns';
+
+const eventsDashboard = [
+  {
+    id: '1',
+    title: 'Trip to Tower of London',
+    date: '2018-03-27T11:00:00+00:00',
+    category: 'culture',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
+    city: 'San Francisco, CA',
+    venue: "Theater, San Francisco, CA",
+    hostedBy: 'Bob',
+    hostPhotoURL: 'https://randomuser.me/api/portraits/men/20.jpg',
+    attendees: [
+      {
+        id: 'a',
+        name: 'Bob',
+        photoURL: 'https://randomuser.me/api/portraits/men/20.jpg'
+      },
+      {
+        id: 'b',
+        name: 'Tom',
+        photoURL: 'https://randomuser.me/api/portraits/men/22.jpg'
+      }
+    ]
+  },
+  {
+    id: '2',
+    title: 'Trip to Punch and Judy Pub',
+    date: '2018-03-28T14:00:00+00:00',
+    category: 'drinks',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
+    city: 'San Francisco, CA',
+    venue: 'Theater, San Francisco, CA',
+    hostedBy: 'Tom',
+    hostPhotoURL: 'https://randomuser.me/api/portraits/men/22.jpg',
+    attendees: [
+      {
+        id: 'b',
+        name: 'Tom',
+        photoURL: 'https://randomuser.me/api/portraits/men/22.jpg'
+      },
+      {
+        id: 'a',
+        name: 'Bob',
+        photoURL: 'https://randomuser.me/api/portraits/men/20.jpg'
+      }
+    ]
+  }
+]
 
 
-class EventDashboard extends Component {
+ class EventDashboard extends Component {
+            state = {
+            events: eventsDashboard,
+            isOpen: false,
+            selectedEvent: null
+         }
+     
+
+  handleFormOpen = () => {
+    this.setState({
+      selectedEvent: null,
+      isOpen:true
+    })
+  }
+
+  handleCancel = () => {
+    this.setState({
+      isOpen: false
+    })
+  }
+
+  handleEditEvent = (eventToUpdate) => () => {
+    this.setState({
+      selectedEvent: eventToUpdate,
+      isOpen: true
+    })
+  }
+  
+  handleCreateEvent = (newEvent) => {
+    newEvent.id = cuid();
+    newEvent.hostPhotoURL = '/assets/user.png';
+    const updatedEvent= [...this.state.events, newEvent];
+    this.setState({
+      events: updatedEvent,
+      isOpen: false
+    })
+  }
+
     render() {
+      const{selectedEvent} = this.state
         return (
             <Grid>
                 <Grid.Column width={10}>
-                    <h2>Left Column</h2>
-               </Grid.Column>
+                    <EventList onEventEdit={this.handleEditEvent} events={this.state.events}/>
+                </Grid.Column>
                 <Grid.Column width={6}>
-                    <h2>Right Column</h2>
-               </Grid.Column>
+                    <Button onClick={this.handleFormOpen} positive content='Create Event'/>
+                    {this.state.isOpen && 
+                     <EventForm selectedEvent={selectedEvent} createEvent={this.handleCreateEvent} handleCancel={this.handleCancel}/>}
+                    
+                </Grid.Column>
             </Grid>
         )
     }
-}
+  }
 
 export default EventDashboard;
