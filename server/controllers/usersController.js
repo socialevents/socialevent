@@ -4,23 +4,23 @@ const bcrypt = require('bcryptjs');
 module.exports = {
     register: async (req, res) => {
         const db = firebase.firestore();
-        const {username, password, email} = req.body;
-        const user = await db.collection('users').where('username', '==', username).get();
+        const {name, email, gender, state, password} = req.body;
+        const user = await db.collection('users').where('username', '==', email).get();
         users = [];
         user.forEach(doc => users.push(doc.data()));
 
         if (users[0]) return res.status(200).send('Username already taken');
 
         const hash = bcrypt.hashSync(password, 10);
-        const newUser = await db.collection('users').add({username, hash, email});
-        req.session.user = {username, email, id:newUser.id, profile_pic: '', name:'', gender:'', dob:'', location:'', description:''};
+        const newUser = await db.collection('users').add({username, hash, email, name, gender, state});
+        req.session.user = {username, email, id:newUser.id, profile_pic: '', name:name, gender:gender, dob:'', state:state, description:''};
 
         return res.status(200).send(req.session.user);
     },
     login: async (req, res) => {
         const db = firebase.firestore();
-        const {username, password} = req.body;
-        const user = await db.collection('users').where('username', '==', username).get();
+        const {email, password} = req.body;
+        const user = await db.collection('users').where('username', '==', email).get();
         users = [];
         user.forEach(doc => users.push({...doc.data(), id:doc.id}));
 

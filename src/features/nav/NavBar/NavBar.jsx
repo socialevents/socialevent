@@ -5,6 +5,7 @@ import "semantic-ui-css/semantic.min.css";
 import { NavLink, Link} from 'react-router-dom'
 import SignedOutMenu from "../Menus/SignedOutMenu";
 import SignedInMenu from "../Menus/SignedInMenu";
+import firebase from 'firebase';
 
 const config = {
   apiKey: "AIzaSyCQ8ekSC_ihYteUPp5X6ZhbnUdkTiHo_Io",
