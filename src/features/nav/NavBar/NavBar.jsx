@@ -5,24 +5,26 @@ import "semantic-ui-css/semantic.min.css";
 import { NavLink, Link} from 'react-router-dom'
 import SignedOutMenu from "../Menus/SignedOutMenu";
 import SignedInMenu from "../Menus/SignedInMenu";
-import firebase from 'firebase';
-
-const config = {
-  apiKey: "AIzaSyCQ8ekSC_ihYteUPp5X6ZhbnUdkTiHo_Io",
-  authDomain: "socailevent.firebaseapp.com",
-  databaseURL: "https://socailevent.firebaseio.com",
-  projectId: "socailevent",
-  storageBucket: "socailevent.appspot.com",
-  messagingSenderId: "820788796021",
-  appId: "1:820788796021:web:c2e6a480ecae394db5763c",
-  measurementId: "G-Q1J5VW2WKN"
-}
-
-firebase.initializeApp(config);
+import {firebase} from '../../../firebaseConfig/firebase';
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import axios from "axios";
 
 class NavBar extends Component {
   state= {
-    authenticated: false
+    authenticated: false,
+    auth: null
+  }
+  uiConfig = {
+    signInFlow: 'popup',
+    signInOptions: [
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID
+    ],
+    callbacks: {
+      signInSuccess: () => false
+    }
+  }
+  componentDidMount = () => {
+
   }
   handleSignIn = () => {
     this.setState({
@@ -35,8 +37,8 @@ class NavBar extends Component {
     })
     this.props.history.push('/')
   }
-
   render() {
+    console.log(this.state.auth)
     const {authenticated} = this.state;
     return (
       <Menu inverted fixed="top">
@@ -51,6 +53,10 @@ class NavBar extends Component {
               <Button as={Link} to='/createEvent' floated="right" positive inverted content="Create Event" />
             </Menu.Item>
             {authenticated ? <SignedInMenu signOut={this.handleSignOut}/> : <SignedOutMenu signIn={this.handleSignIn}/>}
+            <StyledFirebaseAuth
+                  uiConfig={this.uiConfig}
+                  firebaseAuth={firebase.auth()}
+                />
               {/* <Menu.Item name="Profile" />
             <Menu.Item></Menu.Item> */}
         </Container>

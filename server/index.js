@@ -38,6 +38,7 @@ app.delete("/api/events/:id", eventsCtrl.deleteEvent);
 
 app.post("/api/register", usersCtrl.register);
 app.post("/api/login", usersCtrl.login);
+app.get("/api/googleLogin", usersCtrl.googleLogin);
 app.get("/api/logout", usersCtrl.logout);
 app.get("/api/session", usersCtrl.sessionLogin);
 

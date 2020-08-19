@@ -1,5 +1,6 @@
 const firebase = require('firebase');
 const bcrypt = require('bcryptjs');
+require('dotenv').config();
 
 module.exports = {
     register: async (req, res) => {
@@ -59,9 +60,11 @@ module.exports = {
     },
     updateUser: async (req, res) => {
         const {id} = req.params;
-        const {name, gender, dob, location, description, profile_pic} = req.body;
         const db = firebase.firestore();
-        const data = await db.collection('users').doc(`${id}`).set({name, gender, dob, hometown, description, profile_pic}, { merge: true });
+        const data = await db.collection('users').doc(`${id}`).set(req.body, { merge: true });
         res.sendStatus(200);
+    },
+    googleLogin: async (req, res) => {
+        res.status(200).send(process.env.FIREBASE_API_KEY);
     }
 }
