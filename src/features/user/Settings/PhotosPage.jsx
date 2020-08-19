@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { Component } from "react";
+import { Container, Button, Segment, Grid } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
-const PhotoPage = () => {
+class PhotosPage extends Component {
+  render() {
     return (
-        <div>
-            <h1>Photo Page</h1>
-        </div>
-    )
+      
+      <Segment>
+        <h1>My Photos</h1>
+        <Button type="edit" onClick={this.toggleEditView}>Upload photos</Button>
+      </Segment>
+      
+    );
+  }
 }
 
-export default PhotoPage
+export default PhotosPage;
