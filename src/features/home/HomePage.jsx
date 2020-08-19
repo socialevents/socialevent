@@ -1,25 +1,31 @@
 import React from 'react';
-import { Segment, Container, Header, Image, Button, Icon } from 'semantic-ui-react'
+import "semantic-ui-css/semantic.min.css";
+import {Link} from 'react-router-dom';
 
-const HomePage = ({history}) => {
+
+
+const HomePage = () => {
     return (
-            <Segment inverted textAlign='center' vertical className='masthead'>
-            <Container text>
-              <Header as='h1' inverted>
-                <Image
-                  size='massive'
-                  src='/assets/logo.png'
-                  alt='logo'
-                  style={{ marginBottom: 12 }}
-                />
-                How Y'all doing Welcome to Events
-              </Header>
-              <Button onClick={() => history.push('/events')} size='huge' inverted>
-                Get started
-                <Icon name='right arrow' inverted />
-              </Button>
-            </Container>
-          </Segment>
+      <div className="App-home">
+         
+      <header className="App-header">
+        <div className="App-title"><b><b>Events</b></b></div>
+        <div className="App-under"><b><b>A place to meet</b></b></div>
+        <div className="login-box">
+         
+          <Link to='/events' className="links"><button className="login-home-button"><b>enter</b></button></Link>
+          
+        </div>
+      </header>
+      <footer className="home-footer">
+         DevMountain Immersive Full Stack Group Project<br/><br></br>
+        
+         
+             </footer>
+      
+
+      
+    </div>
     )
 }
 
