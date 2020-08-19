@@ -7,54 +7,54 @@ import cuid from 'cuid';
 // import { addMilliseconds } from 'date-fns';
 
 const eventsDashboard = [
-  {
-    id: '1',
-    title: 'Trip to Tower of London',
-    date: '2018-03-27',
-    category: 'culture',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
-    city: 'San Francisco, CA',
-    venue: "Theater, San Francisco, SF,  CA",
-    hostedBy: 'Bob',
-    hostPhotoURL: 'https://randomuser.me/api/portraits/men/20.jpg',
-    attendees: [
-      {
-        id: 'a',
-        name: 'Bob',
-        photoURL: 'https://randomuser.me/api/portraits/men/20.jpg'
-      },
-      {
-        id: 'b',
-        name: 'Tom',
-        photoURL: 'https://randomuser.me/api/portraits/men/22.jpg'
-      }
-    ]
-  },
-  {
-    id: '2',
-    title: 'Trip to Punch and Judy Pub',
-    date: '2018-03-28',
-    category: 'drinks',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
-    city: 'San Francisco, CA',
-    venue: 'Theater, San Francisco, SF, CA',
-    hostedBy: 'Tom',
-    hostPhotoURL: 'https://randomuser.me/api/portraits/men/22.jpg',
-    attendees: [
-      {
-        id: 'b',
-        name: 'Tom',
-        photoURL: 'https://randomuser.me/api/portraits/men/22.jpg'
-      },
-      {
-        id: 'a',
-        name: 'Bob',
-        photoURL: 'https://randomuser.me/api/portraits/men/20.jpg'
-      }
-    ]
-  }
+  // {
+  //   id: '1',
+  //   title: 'Trip to Tower of London',
+  //   date: '2018-03-27',
+  //   category: 'culture',
+  //   description:
+  //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
+  //   city: 'San Francisco, CA',
+  //   venue: "Theater, San Francisco, SF,  CA",
+  //   hostedBy: 'Bob',
+  //   hostPhotoURL: 'https://randomuser.me/api/portraits/men/20.jpg',
+  //   attendees: [
+  //     {
+  //       id: 'a',
+  //       name: 'Bob',
+  //       photoURL: 'https://randomuser.me/api/portraits/men/20.jpg'
+  //     },
+  //     {
+  //       id: 'b',
+  //       name: 'Tom',
+  //       photoURL: 'https://randomuser.me/api/portraits/men/22.jpg'
+  //     }
+  //   ]
+  // },
+  // {
+  //   id: '2',
+  //   title: 'Trip to Punch and Judy Pub',
+  //   date: '2018-03-28',
+  //   category: 'drinks',
+  //   description:
+  //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
+  //   city: 'San Francisco, CA',
+  //   venue: 'Theater, San Francisco, SF, CA',
+  //   hostedBy: 'Tom',
+  //   hostPhotoURL: 'https://randomuser.me/api/portraits/men/22.jpg',
+  //   attendees: [
+  //     {
+  //       id: 'b',
+  //       name: 'Tom',
+  //       photoURL: 'https://randomuser.me/api/portraits/men/22.jpg'
+  //     },
+  //     {
+  //       id: 'a',
+  //       name: 'Bob',
+  //       photoURL: 'https://randomuser.me/api/portraits/men/20.jpg'
+  //     }
+  //   ]
+  // }
 ]
 
 
@@ -116,7 +116,7 @@ const eventsDashboard = [
     axios.post('/api/events/', newEvent).then(res => {
       newEvent.id = res.data;
       newEvent.hostPhotoURL = '/assets/user.png';
-      const updatedEvents= [...this.state.events, newEvent];
+      const updatedEvents= [newEvent, ...this.state.events];
       this.setState({
         events: updatedEvents,
         isOpen: false
