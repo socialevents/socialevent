@@ -7,15 +7,35 @@ import "semantic-ui-css/semantic.min.css";
     constructor(props){
         super(props)
         this.state={
-            registered: true,
             email: '',
             password: ''
             
         }
+        this.login=this.login.bind(this)
+
+    }
+
+        login(){
+            let user = {email: this.state.email, password: this.state.password}
+            axios.post('/api/users/login', user).then(res=>{
+                    this.props.login(res.data.user);
+                    this.props.history.push('/dashboard');
+                }).catch(res=>{
+                 
+                    console.log(res)
+                })
+        }
+
+        
+  
+
+        
+    
+    
 
 
        
-    }
+    
     render() {
         return (
             <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
@@ -25,17 +45,17 @@ import "semantic-ui-css/semantic.min.css";
               </Header>
               <Form size='large'>
                 <Segment stacked>
-                  <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
+                  <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' onChange={event=>{this.setState({email: event.target.value})}} />
                   <Form.Input
                     fluid
                     icon='lock'
                     iconPosition='left'
                     placeholder='Password'
-                    type='password'
+                    type='password' onChange={event=>{this.setState({password: event.target.value})}}
                   />
         
                   <Button color='red' fluid size='large'>
-                    Login
+                    Login 
                   </Button>
                 </Segment>
               </Form>
