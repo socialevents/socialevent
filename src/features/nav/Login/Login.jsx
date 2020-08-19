@@ -52,13 +52,8 @@ import "semantic-ui-css/semantic.min.css";
   
                      
               
-<<<<<<< HEAD
     }
     }
-=======
-        }
-    }
->>>>>>> master
 
 
 export default Login;

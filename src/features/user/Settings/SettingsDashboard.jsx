@@ -5,7 +5,7 @@ import SettingsNav from './SettingsNav'
 import BasicPage from './BasicPage'
 import AboutPage from './AboutPage'
 import PhotosPage from './PhotosPage'
-import AccontPage from './AccontPage'
+import Accontpage from './AccontPage'
 
 
 const SettingsDashboard = () => {
@@ -17,7 +17,7 @@ const SettingsDashboard = () => {
                     <Route path='/settings/basic' component={BasicPage}/>
                     <Route path='/settings/about' component={AboutPage}/>
                     <Route path='/settings/photos' component={PhotosPage}/>
-                    <Route path='/settings/account' component={AccontPage}/>
+                    <Route path='/settings/account' component={Accontpage}/>
                 </Switch>
             </Grid.Column>
             <Grid.Column width={4}>
