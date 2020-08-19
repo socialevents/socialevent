@@ -1,8 +1,38 @@
 import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react'
 import "semantic-ui-css/semantic.min.css";
+import {connect} from 'react-redux';
+import {getUser} from '../../../redux/authReducer'
 
  class Register extends Component {
+    constructor(props){
+        super(props)
+        this.state={
+            name: '',
+            email: '',
+            gender: '',
+            state: '',
+            password: ''
+            
+        }
+         this.register=this.register.bind(this)
+         
+    }
+
+    
+    
+    
+    register(name, email, gender, state, password){
+        let user = {"name": name, "email": email, "gender": gender, "state": state, "password": password}
+        axios.post('/api/register', user).then(res=>{
+                this.props.getUser(res.data.user);
+                this.props.history.push('/events');
+            }).catch(res=>{
+               
+                console.log(res)
+            })
+    }
+
     render() {
         return (
             <div class="ui form segment">
@@ -11,12 +41,12 @@ import "semantic-ui-css/semantic.min.css";
              </Header>
              <div class="field">
    <label>Name</label>
-   <input type="text" name="name" placeholder="Name"></input>
+   <input type="text" name="name" placeholder="Name" onChange={event=>{this.setState({name: event.target.value})}} required></input>
  </div>
 
  <div class="field">
    <label>Email</label>
-   <input type="text" name="email" placeholder="Email"></input>
+   <input type="text" name="email" placeholder="Email" onChange={event=>{this.setState({email: event.target.value})}} required></input>
  </div>
 
  
@@ -89,7 +119,7 @@ import "semantic-ui-css/semantic.min.css";
    </div>
    <div class="field">
    <label>Password</label>
-   <input name="password" type="password"></input>
+   <input name="password" type="password" onChange={event=>{this.setState({password: event.target.value})}} required></input>
  </div>
  <div class="inline field">
    <div class="ui checkbox">
@@ -107,4 +137,4 @@ import "semantic-ui-css/semantic.min.css";
     }
 }
 
-export default Register;
+export default connect(null, {getUser}) (Register);
