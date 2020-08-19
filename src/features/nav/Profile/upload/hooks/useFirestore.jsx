@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
-import { projectStorage, projectFirestore } from "../firebase/config";
+import {
+  projectStorage,
+  projectFirestore,
+} from "../../../../../firebase/config";
 import { storage } from "firebase";
 
 const useFirestore = (collection) => {

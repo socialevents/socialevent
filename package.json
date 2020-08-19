@@ -8,6 +8,7 @@
     "bcryptjs": "^2.4.3",
     "cuid": "^2.1.1",
     "date-fns": "^1.29.0",
+    "dotenv": "^8.2.0",
     "express-session": "^1.17.1",
     "firebase": "^7.18.0",
     "firebase-admin": "^9.1.0",

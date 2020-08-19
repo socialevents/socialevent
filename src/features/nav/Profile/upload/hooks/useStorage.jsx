@@ -3,7 +3,7 @@ import {
   projectStorage,
   projectFirestore,
   timestamp,
-} from "../firebase/config";
+} from "../../../../../firebase/config";
 import { storage } from "firebase";
 
 // i need the back end!
