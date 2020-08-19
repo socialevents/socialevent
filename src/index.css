@@ -118,3 +118,11 @@ body {
 .dropzone--isActive {
   border: dashed 3px green;
 }
+
+/* progress bar styles */
+
+.progress-bar {
+  height: 5px;
+  background: green;
+  margin-top: 20px;
+}
