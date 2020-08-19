@@ -12,11 +12,11 @@ const Router =
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
-      <React.StrictMode>
+    <BrowserRouter>
+      
         <App />
-      </React.StrictMode>
-    </Router>
+      
+    </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );
