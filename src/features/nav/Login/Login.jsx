@@ -38,8 +38,8 @@ import { Container, Button } from 'semantic-ui-react';
   
                      
               
-        )
     }
-}
+    }
+
 
 export default Login;
