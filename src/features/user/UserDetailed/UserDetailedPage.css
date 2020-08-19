@@ -1,0 +1,11 @@
+
+
+.profile-photo-info{
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+  padding-right: 60px;
+  padding-left: 60px;
+  
+}
+
