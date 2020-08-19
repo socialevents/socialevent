@@ -7,7 +7,6 @@ import AboutPage from './AboutPage'
 import PhotosPage from './PhotosPage'
 
 
-
 const SettingsDashboard = () => {
     return (
         <Grid>
