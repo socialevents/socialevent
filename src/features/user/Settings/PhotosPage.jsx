@@ -6,22 +6,7 @@ class PhotosPage extends Component {
   render() {
     return (
       <Grid>
-        <Grid.Column width={3}>
-        <Segment>
-        <h2>Settings</h2>
-            <Link to='/settings/basicinfo'>
-              <div>Basic Info</div>
-            </Link>
-
-            <Link to='/settings/aboutme'>
-            <div>About Me</div>
-            </Link>
-
-            <Link to='/settings/myphotos'>
-            <div>My Photos</div>
-            </Link>
-        </Segment>
-        </Grid.Column>
+        
         <Grid.Column width={3}>
       <Segment>
         <h1>My Photos</h1>
@@ -33,4 +18,4 @@ class PhotosPage extends Component {
   }
 }
 
-export default MyPhotos;
+export default PhotosPage;
