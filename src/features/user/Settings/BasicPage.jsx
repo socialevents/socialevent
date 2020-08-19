@@ -19,16 +19,16 @@ class BasicPage extends Component {
 
   render() {
     return (
-      <Grid>
+      
        
         <Segment>
-          <Grid.Column width={10}>
+          
             <Form>
               <h1>Basic Info</h1>
               {this.state.editView === false ? (
                 <div>
                   <Form.Field>
-                    <label>Name:</label>
+                    <label>Name: </label>
                   </Form.Field>
                   <Form.Field>
                     <label>Gender:</label>
@@ -70,9 +70,9 @@ class BasicPage extends Component {
                 </div>
               )}
             </Form>
-          </Grid.Column>
+          
         </Segment>
-      </Grid>
+      
     );
   }
 }

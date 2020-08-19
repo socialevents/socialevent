@@ -19,9 +19,9 @@ class AboutPage extends Component {
 
   render() {
     return (
-      <Grid>
+      
         <Segment>
-          <Grid.Column width={3}>
+          
             <Form>
               {/* profile image */}
               <h1>About Me</h1>
@@ -77,9 +77,9 @@ class AboutPage extends Component {
                 </div>
               )}
             </Form>
-          </Grid.Column>
+          
         </Segment>
-      </Grid>
+      
     );
   }
 }
