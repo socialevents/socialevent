@@ -5,7 +5,7 @@ import SettingsNav from './SettingsNav'
 import BasicPage from './BasicPage'
 import AboutPage from './AboutPage'
 import PhotosPage from './PhotosPage'
-import Accontpage from './AccontPage'
+import Accontpage from './Accontpage'
 
 
 const SettingsDashboard = () => {

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react'
 import "semantic-ui-css/semantic.min.css";
+import {connect} from 'react-redux';
+import {getUser} from '../../../redux/authReducer'
 
  class Register extends Component {
     constructor(props){
@@ -13,28 +15,23 @@ import "semantic-ui-css/semantic.min.css";
             password: ''
             
         }
-
-
-        
-        this.register=this.register.bind(this)
+         this.register=this.register.bind(this)
+         
     }
 
     
     
     
-    
-    
     register(name, email, gender, state, password){
-        let user = {"name": name, "email": email, "gender": gender, "state": state, "password" : password}
-        axios.post('/api/users/create', user).then(res=>{
-                this.props.login(res.data.user);
-                this.props.history.push('/dashboard');
+        let user = {"name": name, "email": email, "gender": gender, "state": state, "password": password}
+        axios.post('/api/register', user).then(res=>{
+                this.props.getUser(res.data.user);
+                this.props.history.push('/');
             }).catch(res=>{
                
                 console.log(res)
             })
     }
-
 
     render() {
         return (
@@ -140,4 +137,4 @@ import "semantic-ui-css/semantic.min.css";
     }
 }
 
-export default Register;
+export default connect(null, {getUser}) (Register);
