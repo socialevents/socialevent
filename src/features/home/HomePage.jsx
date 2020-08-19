@@ -18,7 +18,7 @@ const HomePage = () => {
         </div>
       </header>
       <footer className="home-footer">
-         @DevMountain Full Stack Group Project<br/><br></br>
+         DevMountain Immersive Full Stack Group Project<br/><br></br>
         
          
              </footer>
