@@ -1,11 +1,10 @@
 
 import React, { Component } from "react";
 import { Menu, Container, Button } from "semantic-ui-react";
-import {Link} from 'react-router-dom';
 import "semantic-ui-css/semantic.min.css";
-import { NavLink} from 'react-router-dom'
-import firebase from 'firebase';
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
+import { NavLink, Link} from 'react-router-dom'
+import SignedOutMenu from "../Menus/SignedOutMenu";
+import SignedInMenu from "../Menus/SignedInMenu";
 
 const config = {
   apiKey: "AIzaSyCQ8ekSC_ihYteUPp5X6ZhbnUdkTiHo_Io",
@@ -21,23 +20,23 @@ const config = {
 firebase.initializeApp(config);
 
 class NavBar extends Component {
-
-  componentDidMount = () => {
-    firebase.auth().onAuthStateChanged(user => {
-      console.log(user);
+  state= {
+    authenticated: false
+  }
+  handleSignIn = () => {
+    this.setState({
+      authenticated: true
     })
   }
-
-  uiConfig = {
-    signInFlow: 'popup',
-    signInOptions: [
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID
-    ],
-    callbacks: {
-      signInSuccess: () => false
-    }
+  handleSignOut = () => {
+    this.setState({
+      authenticated:false
+    })
+    this.props.history.push('/')
   }
+
   render() {
+    const {authenticated} = this.state;
     return (
       <Menu inverted fixed="top">
         <Container>
@@ -45,28 +44,14 @@ class NavBar extends Component {
             <img src="/assets/logo.png" alt="logo" />
             Social-events
           </Menu.Item>
-          <Menu.Item as={NavLink} to='/events' name="Events" />
-          <Menu.Item as={NavLink} to='/people' name="People" />
-          <Menu.Item>
-            <Button as={Link} to='/createEvent' floated="right" positive inverted content="Create Event" />
-          </Menu.Item>
-          
-          <Menu.Item as={NavLink} to='/login' name="Login" position="right">
-            <Button basic inverted content="Login"  />
-            <StyledFirebaseAuth
-              uiConfig={this.uiConfig}
-              firebaseAuth={firebase.auth()}
-              />
-            <Button
-              basic
-              inverted
-              content="Sign Out"
-              style={{ marginLeft: "0.5em" }}
-              onClick={() => firebase.auth().signOut()}
-            />
-          </Menu.Item>
-          <Menu.Item name="Profile" />
-          <Menu.Item></Menu.Item>
+            <Menu.Item as={NavLink} to='/events' name="Events" />
+            <Menu.Item as={NavLink} to='/people' name="People" />
+            <Menu.Item>
+              <Button as={Link} to='/createEvent' floated="right" positive inverted content="Create Event" />
+            </Menu.Item>
+            {authenticated ? <SignedInMenu signOut={this.handleSignOut}/> : <SignedOutMenu signIn={this.handleSignIn}/>}
+              {/* <Menu.Item name="Profile" />
+            <Menu.Item></Menu.Item> */}
         </Container>
       </Menu>
     );
