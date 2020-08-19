@@ -3,22 +3,14 @@ import { Button, Grid, Header, Form, Message, Image, Segment} from 'semantic-ui-
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import "semantic-ui-css/semantic.min.css";
-import firebase from 'firebase';
+import firebase from '../../../../src/firebaseConfig/firebase'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import {getUser} from '../../../redux/authReducer';
+import axios from 'axios'
 
-const config = {
-  apiKey: "AIzaSyCQ8ekSC_ihYteUPp5X6ZhbnUdkTiHo_Io",
-  authDomain: "socailevent.firebaseapp.com",
-  databaseURL: "https://socailevent.firebaseio.com",
-  projectId: "socailevent",
-  storageBucket: "socailevent.appspot.com",
-  messagingSenderId: "820788796021",
-  appId: "1:820788796021:web:c2e6a480ecae394db5763c",
-  measurementId: "G-Q1J5VW2WKN"
-}
 
-firebase.initializeApp(config);
+
+
 
  class Login extends Component {
     constructor(props){
@@ -50,7 +42,7 @@ firebase.initializeApp(config);
             let user = {email: this.state.email, password: this.state.password}
             axios.post('/api/login', user).then(res=>{
                     this.props.getUser(res.data.user);
-                    this.props.history.push('/');
+                    this.props.history.push('/events');
                 }).catch(res=>{
                  
                     console.log(res)
@@ -59,7 +51,9 @@ firebase.initializeApp(config);
 
         
    render() {
+     console.log('hello')
         return (
+
             <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
             <Grid.Column style={{ maxWidth: 450 }}>
               <Header as='h2' color='black' textAlign='center'>
@@ -67,7 +61,11 @@ firebase.initializeApp(config);
               </Header>
               <Form size='large'>
                 <Segment stacked>
-                  <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' onChange={event=>{this.setState({email: event.target.value})}} />
+                  <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address'  
+                  error={{
+                      content: 'Please enter a valid email address',
+                      pointing: 'below',
+                    }} onChange={event=>{this.setState({email: event.target.value})}} />
                   <Form.Input
                     fluid
                     icon='lock'

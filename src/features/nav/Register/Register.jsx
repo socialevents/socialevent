@@ -26,7 +26,7 @@ import {getUser} from '../../../redux/authReducer'
         let user = {"name": name, "email": email, "gender": gender, "state": state, "password": password}
         axios.post('/api/register', user).then(res=>{
                 this.props.getUser(res.data.user);
-                this.props.history.push('/');
+                this.props.history.push('/events');
             }).catch(res=>{
                
                 console.log(res)

@@ -10,6 +10,8 @@ import EventForm from '../../features/event/EventForm/EventForm';
 import EventDetailedPage  from '../../features/event/EventDetails/EventDetailedPage'
 import HomePage from '../../features/home/HomePage';
 
+
+
 function App() {
   return (
     <div>
@@ -22,7 +24,8 @@ function App() {
         <Container className="main">
         <Switch>
         
-        <Route path='/events' component={EventDashboard} />
+        
+        <Route path='/events' component={EventDashboard} /> 
         <Route path='/event/:id' component={EventDetailedPage} />
         <Route path='/people' component={PeopleDashboard} />
         <Route path='/profile/:id' component={UserDetailedPage} />
