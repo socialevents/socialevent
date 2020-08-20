@@ -10,35 +10,32 @@ function PhotosPage() {
 
   return (
     <Grid>
-      <Grid.Column width={3}>
-        <Segment>
-          <h2>Settings</h2>
-          <Link to="/settings/basicinfo">
-            <div>Basic Info</div>
-          </Link>
+    <Grid.Column width={3}>
+      <Segment>
+        <h2>Settings</h2>
+        <Link to="/settings/basicinfo">
+          <div>Basic Info</div>
+        </Link>
 
-          <Link to="/settings/aboutme">
-            <div>About Me</div>
-          </Link>
-          <UploadForm />
-          <ImageGrid setSelectedImg={setSelectedImg} />
-          {selectedImg && (
-            <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
-          )}
-          <Link to="/settings/PhotosPage">
-            <div>My Photos</div>
-          </Link>
-        </Segment>
-      </Grid.Column>
-      <Grid.Column width={3}>
-        <Segment>
-          <h1>My Photos</h1>
-          <Button type="edit" onClick={this.toggleEditView}>
-            Upload photos
-          </Button>
-        </Segment>
-      </Grid.Column>
-    </Grid>
+        <Link to="/settings/aboutme">
+          <div>About Me</div>
+        </Link>
+        <Link to="/settings/myphotos">
+          <div>My Photos</div>
+        </Link>
+      </Segment>
+    </Grid.Column>
+    <Grid.Column width={3}>
+      <Segment>
+        <h1>My Photos</h1>
+        <UploadForm />
+        <ImageGrid setSelectedImg={setSelectedImg} />
+        {selectedImg && (
+          <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
+        )}
+      </Segment>
+    </Grid.Column>
+  </Grid>
   );
 }
 
