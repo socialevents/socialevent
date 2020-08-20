@@ -3,10 +3,7 @@ import {
   projectStorage,
   projectFirestore,
   timestamp,
-} from "../firebase/config";
-import { storage } from "firebase";
-
-// i need the back end!
+} from "../../../../../firebase/config";
 
 const useStorage = (file) => {
   const [progress, setProgress] = useState(0);
@@ -14,7 +11,7 @@ const useStorage = (file) => {
   const [url, setUrl] = useState(null);
 
   useEffect(() => {
-    //references
+    // references
     const storageRef = projectStorage.ref(file.name);
     const collectionRef = projectFirestore.collection("images");
 
@@ -29,13 +26,13 @@ const useStorage = (file) => {
       },
       async () => {
         const url = await storageRef.getDownloadURL();
-        const createdAt = timestamp();
-        collectionRef.add({ url, createdAt });
+        console.log(url)
+        // const createdAt = timestamp()
+        await collectionRef.add({ url });
         setUrl(url);
       }
     );
   }, [file]);
-
   return { progress, url, error };
 };
 

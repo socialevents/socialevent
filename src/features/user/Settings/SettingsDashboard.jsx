@@ -26,4 +26,4 @@ const SettingsDashboard = () => {
     )
 }
 
-export default SettingsDashboard
+export default SettingsDashboard;
