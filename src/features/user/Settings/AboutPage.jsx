@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Grid, Button, Segment, Form } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import {getUser} from '../../../redux/authReducer';
+import {connect} from 'react-redux';
+import axios from 'axios';
 
 class AboutPage extends Component {
   constructor(props) {
@@ -8,16 +11,43 @@ class AboutPage extends Component {
 
     this.state = {
       editView: false,
+      description: ''
     };
+  }
+
+  componentDidMount = () => {
+    this.setState({
+      description: this.props.user.description
+    })
+  }
+
+  componentDidUpdate = (prevProps) => {
+    if (prevProps.user !== this.props.user) {
+      this.setState({
+        description: this.props.user.description
+      })
+    }
+  }
+
+  handleSaveChanges = () => {
+    const {description} = this.state;
+    console.log(this.state.id);
+    axios.put(`/api/users/${this.props.user.id}`, {description})
+      .then((res) => this.props.getUser(res.data))
+      .catch(err => console.log(err));
+      
+      this.toggleEditView();
+
   }
 
   toggleEditView = () => {
     this.setState({ editView: !this.state.editView });
   };
 
-  //need endpoint to save changes jordan - 8/17
+  
 
   render() {
+    const {description} = this.props.user;
     return (
       
         <Segment>
@@ -28,19 +58,7 @@ class AboutPage extends Component {
               {this.state.editView === false ? (
                 <div>
                   <Form.Field>
-                    <label>Hobbies</label>
-                  </Form.Field>
-                  <Form.Field>
-                    <label>Music Choice</label>
-                  </Form.Field>
-                  <Form.Field>
-                    <label>Favorite Movie</label>
-                  </Form.Field>
-                  <Form.Field>
-                    <label>Favorite Foods</label>
-                  </Form.Field>
-                  <Form.Field>
-                    <label>Allergies</label>
+                    <label>Description: {description}</label>
                   </Form.Field>
                   <Button type="edit" onClick={this.toggleEditView}>
                     Edit
@@ -49,29 +67,16 @@ class AboutPage extends Component {
               ) : (
                 <div>
                   <Form.Field>
-                    <label>Hobbies</label>
-                    <input placeholder="What do you like to do for fun?" />
-                  </Form.Field>
-                  <Form.Field>
-                    <label>Music Choice</label>
-                    <input placeholder="What do you like to listen to?" />
-                  </Form.Field>
-                  <Form.Field>
-                    <label>Favorite Movie</label>
-                    <input placeholder="optional" />
-                  </Form.Field>
-                  <Form.Field>
-                    <label>Favorite Foods</label>
-                    <input placeholder="optional" />
-                  </Form.Field>
-                  <Form.Field>
-                    <label>Allergies</label>
-                    <input placeholder="Tell us what you are allergic to" />
+                    <label>Description</label>
+                    <input
+                    value={this.state.description}
+                    onChange={(e) => this.setState({description: e.target.value})}
+                     placeholder='Hobbies, allergies, hometown, interesting facts about yourself, etc...'></input>
                   </Form.Field>
                   <Button type="button" onClick={this.toggleEditView}>
                     Cancel
                   </Button>
-                  <Button type="button" onClick={this.toggleEditView}>
+                  <Button type="button" onClick={this.handleSaveChanges}>
                     Save Changes
                   </Button>
                 </div>
@@ -83,5 +88,5 @@ class AboutPage extends Component {
     );
   }
 }
-
-export default AboutPage;
+const mapStateToProps = reduxState => reduxState;
+export default connect(mapStateToProps, {getUser})(AboutPage);

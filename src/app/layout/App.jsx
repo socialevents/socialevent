@@ -26,8 +26,8 @@ function App() {
         <NavBar/>
         <Container className="main">
         <Switch>
-        
-        
+        <Route path='/register' component={Register} />
+        <Route path='/login' component={Login} />
         <Route path='/events' component={EventDashboard} /> 
         <Route path='/login' component={Login}/>
         <Route path='/register' component={Register}/>
