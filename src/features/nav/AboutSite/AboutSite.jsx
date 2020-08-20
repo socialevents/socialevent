@@ -96,7 +96,7 @@ import "semantic-ui-css/semantic.min.css";
       <div class="description">
         Gabrielle is a Web Developer from Utah.
         <Message>
-        <i class="linkedin icon"></i> <a href='#'>Linkedin</a>
+        <i class="linkedin icon"></i> <a href='https://www.linkedin.com/in/gabrielle-atwood-261892156/'>Linkedin</a>
               </Message>
       </div>
     </div>
