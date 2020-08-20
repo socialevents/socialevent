@@ -4,7 +4,7 @@ import "semantic-ui-css/semantic.min.css";
 import {connect} from 'react-redux';
 import {getUser} from '../../../redux/authReducer'
 import axios from 'axios';
-import {firebase} from '../../../../src/firebaseConfig/firebase'
+import firebase from  "../../../../src/firebase/config"
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
  class Register extends Component {

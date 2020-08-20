@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import "semantic-ui-css/semantic.min.css";
 import { NavLink} from 'react-router-dom'
 import {connect} from 'react-redux';
-import {firebase} from '../../../firebaseConfig/firebase';
+import firebase from  "../../../../src/firebase/config"
 import {clearUser, getUser} from '../../../redux/authReducer';
 import SignedInMenu from '../Menus/SignedInMenu';
 import SignedOutMenu from '../Menus/SignedOutMenu';
