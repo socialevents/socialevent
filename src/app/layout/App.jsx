@@ -12,6 +12,11 @@ import EventDetailedPage  from '../../features/event/EventDetails/EventDetailedP
 import HomePage from '../../features/home/HomePage';
 import Login from '../../features/nav/Login/Login';
 import Register from '../../features/nav/Register/Register';
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> master
 
 function App() {
   return (
@@ -27,6 +32,8 @@ function App() {
         <Route path='/register' component={Register} />
         <Route path='/login' component={Login} />
         <Route path='/events' component={EventDashboard} /> 
+        <Route path='/login' component={Login}/>
+        <Route path='/register' component={Register}/>
         <Route path='/event/:id' component={EventDetailedPage} />
         <Route path='/people' component={PeopleDashboard} />
         <Route path='/profile/:id' component={UserDetailedPage} />
