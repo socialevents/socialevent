@@ -23,8 +23,9 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
     }
 
     componentDidMount = () => {
-      const {gender, state} = this.state;
       firebase.auth().onAuthStateChanged(user => {
+        const {gender, state} = this.state;
+        console.log(gender, state)
         if (user) {
           const {displayName, email} = user;
           axios.post('/api/googleRegister', {id:user.uid, name:displayName, gender, state, email})

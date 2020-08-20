@@ -5,9 +5,25 @@ import {Link} from 'react-router-dom';
 import "semantic-ui-css/semantic.min.css";
 import { NavLink} from 'react-router-dom'
 import {connect} from 'react-redux';
+import {firebase} from '../../../firebaseConfig/firebase';
+import {clearUser} from '../../../redux/authReducer';
+import axios from "axios";
 
 
 class NavBar extends Component {
+  constructor(props) {
+    super(props);
+    this.signOut = this.signOut.bind(this);
+  }
+
+  signOut() {
+    firebase.auth().signOut();
+    axios.get('/api/logout')
+    .then(() => {
+      this.props.clearUser();
+    })
+  }
+
   render() {
     return (
       <Menu inverted fixed="top">
@@ -23,9 +39,10 @@ class NavBar extends Component {
           </Menu.Item>
           
           <Menu.Item as={NavLink} to='/login' name="Login" position="right">
-            <Button basic inverted content="Login"  />
+          <Button basic inverted content="Login"  />
            
             <Button
+              onClick={this.signOut}
               basic
               inverted
               content="Sign Out"
@@ -40,4 +57,4 @@ class NavBar extends Component {
   }
 }
 const mapStateToProps = reduxState => reduxState;
-export default connect(mapStateToProps)(NavBar);
+export default connect(mapStateToProps, {clearUser})(NavBar);

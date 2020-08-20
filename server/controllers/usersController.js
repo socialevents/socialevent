@@ -22,7 +22,7 @@ module.exports = {
     login: async (req, res) => {
         const db = firebase.firestore();
         const {email, password} = req.body;
-        const user = await db.collection('users').where('username', '==', email).get();
+        const user = await db.collection('users').where('email', '==', email).get();
         users = [];
         user.forEach(doc => users.push({...doc.data(), id:doc.id}));
 
@@ -65,33 +65,27 @@ module.exports = {
         const data = await db.collection('users').doc(`${id}`).set(req.body, { merge: true });
         res.sendStatus(200);
     },
-    googleLogin: async (req, res) => {
+    googleLogin: (req, res) => {
         const {id} = req.body;
         const db = firebase.firestore();
-        const data = await db.collection('users').doc(`${id}`).get();
-        users = [];
-        data.forEach(doc => users.push({...doc.data(), id:doc.id}));
-        if (!users[0]) return res.status(401).send('Register first');
-
-        req.session.user = users[0];
-        return res.status(200).send(req.session.user);
+        db.collection('users').doc(`${id}`).get().then(function(doc) {
+            if (!doc.data()) return res.status(401).send('Register first');
+            req.session.user = doc.data();
+            return res.status(200).send(req.session.user);
+        });
     },
     googleRegister: async (req, res) => {
         const {id, name, gender, state, email} = req.body;
         const db = firebase.firestore();
-        console.log(id);
-        const data = await db.collection('users').doc(`${id}`).get();
-        console.log(data.data());
-        users = data.data();
-        // data.forEach(doc => users.push({...doc.data(), id:doc.id}));
-        if (users[0]) {
-            req.session.user = users[0];
-            return res.status(200).send(req.session.user);
-        } else {
-            const newUser = await db.collection('users').add({email, name, gender, state, dob:'', description:'', profile_pic: '', profile_pics: []});
-            req.session.user = {email, id:newUser.id, profile_pic: '', name, gender, dob:'', state, description:'', profile_pics:[]};
-            return res.status(200).send(req.session.user);
-        }
-
+        const data = await db.collection('users').doc(`${id}`).get().then( async function(doc) {
+            if (doc.data()) {
+                req.session.user = doc.data();
+                return res.status(200).send(req.session.user);
+            } else {
+                const newUser = await db.collection('users').doc(`${id}`).set({email, name, gender, state, dob:'', description:'', profile_pic: '', profile_pics: []});
+                req.session.user = {email, id, profile_pic: '', name, gender, dob:'', state, description:'', profile_pics:[]};
+                return res.status(200).send(req.session.user);
+            }
+        })
     }
 }

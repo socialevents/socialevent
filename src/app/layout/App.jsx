@@ -12,11 +12,8 @@ import EventDetailedPage  from '../../features/event/EventDetails/EventDetailedP
 import HomePage from '../../features/home/HomePage';
 import Login from '../../features/nav/Login/Login';
 import Register from '../../features/nav/Register/Register';
-<<<<<<< HEAD
-=======
 
 
->>>>>>> master
 
 function App() {
   return (
