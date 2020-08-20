@@ -5,15 +5,13 @@ module.exports = {
         const db = firebase.firestore();
         const data = await db.collection('events').get();
         let allEvents = [];
-        data.forEach(doc => allEvents.push(doc.data()));
+        data.forEach(doc => allEvents.push({...doc.data(), id:doc.id}));
         res.status(200).send(allEvents);
     },
     addEvent: async (req, res) => {
-        const {title, body, author, date, profile_pic} = req.body;
         const db = firebase.firestore();
-        console.log({title, body, author, date})
-        const data = await db.collection('events').add({title, body, author, date, profile_pic});
-        res.sendStatus(200);
+        const data = await db.collection('events').add({...req.body});
+        res.status(200).send(data.id);
     },
     deleteEvent: async (req, res) => {
         const {id} = req.params;
@@ -22,10 +20,9 @@ module.exports = {
         res.sendStatus(200);
     },
     updateEvent: async (req, res) => {
-        const {title, body, author, date, profile_pic} = req.body;
         const {id} = req.params;
         const db = firebase.firestore();
-        const data = await db.collection('events').doc(`${id}`).set({title, body, author, date, profile_pic});
+        const data = await db.collection('events').doc(`${id}`).set({...req.body});
         res.sendStatus(200);
     }
 }
