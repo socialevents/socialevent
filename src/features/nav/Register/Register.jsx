@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Button } from 'semantic-ui-react'
+import { Header } from 'semantic-ui-react'
 import "semantic-ui-css/semantic.min.css";
 import {connect} from 'react-redux';
 import {getUser} from '../../../redux/authReducer'
+import axios from 'axios';
 
  class Register extends Component {
     constructor(props){
