@@ -10,6 +10,8 @@ import SettingsDashboard from '../../features/user/Settings/SettingsDashboard';
 import EventForm from '../../features/event/EventForm/EventForm';
 import EventDetailedPage  from '../../features/event/EventDetails/EventDetailedPage'
 import HomePage from '../../features/home/HomePage';
+import Login from '../../features/nav/Login/Login';
+import Register from '../../features/nav/Register/Register';
 
 
 
@@ -27,6 +29,8 @@ function App() {
         
         
         <Route path='/events' component={EventDashboard} /> 
+        <Route path='/login' component={Login}/>
+        <Route path='/register' component={Register}/>
         <Route path='/event/:id' component={EventDetailedPage} />
         <Route path='/people' component={PeopleDashboard} />
         <Route path='/profile/:id' component={UserDetailedPage} />
