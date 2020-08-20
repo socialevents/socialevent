@@ -56,7 +56,7 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
         const {name, email, gender, state, password} = this.state;
         let user = {"name": name, "email": email, "gender": gender, "state": state, "password": password}
         axios.post('/api/register', user).then(res=>{
-                this.props.getUser(res.data.user);
+                this.props.getUser(res.data);
                 this.props.history.push('/events');
             }).catch(res=>{
                
