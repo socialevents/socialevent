@@ -6,15 +6,16 @@ module.exports = {
     register: async (req, res) => {
         const db = firebase.firestore();
         const {name, email, gender, state, password} = req.body;
-        const user = await db.collection('users').where('username', '==', email).get();
+        console.log(email);
+        const user = await db.collection('users').where('email', '==', email).get();
         users = [];
         user.forEach(doc => users.push(doc.data()));
-
-        if (users[0]) return res.status(200).send('Username already taken');
+        console.log(users);
+        if (users[0]) return res.status(401).send('Username already taken');
 
         const hash = bcrypt.hashSync(password, 10);
-        const newUser = await db.collection('users').add({username, hash, email, name, gender, state});
-        req.session.user = {username, email, id:newUser.id, profile_pic: '', name:name, gender:gender, dob:'', state:state, description:''};
+        const newUser = await db.collection('users').add({hash, email, name, gender, state, dob:'', description:'', profile_pic: '', profile_pics: []});
+        req.session.user = {email, id:newUser.id, profile_pic: '', name, gender, dob:'', state, description:'', profile_pics:[]};
 
         return res.status(200).send(req.session.user);
     },
@@ -31,7 +32,7 @@ module.exports = {
         if (!authorization) return res.status(401).send('Username or Password is incorrect');
         delete users[0].hash
         req.session.user = users[0];
-        return res.sendStatus(200);
+        return res.status(200).send(req.session.user);
     },
     logout: async (req, res) => {
         req.session.destroy();
@@ -65,6 +66,32 @@ module.exports = {
         res.sendStatus(200);
     },
     googleLogin: async (req, res) => {
-        res.status(200).send(process.env.FIREBASE_API_KEY);
+        const {id} = req.body;
+        const db = firebase.firestore();
+        const data = await db.collection('users').doc(`${id}`).get();
+        users = [];
+        data.forEach(doc => users.push({...doc.data(), id:doc.id}));
+        if (!users[0]) return res.status(401).send('Register first');
+
+        req.session.user = users[0];
+        return res.status(200).send(req.session.user);
+    },
+    googleRegister: async (req, res) => {
+        const {id, name, gender, state, email} = req.body;
+        const db = firebase.firestore();
+        console.log(id);
+        const data = await db.collection('users').doc(`${id}`).get();
+        console.log(data.data());
+        users = data.data();
+        // data.forEach(doc => users.push({...doc.data(), id:doc.id}));
+        if (users[0]) {
+            req.session.user = users[0];
+            return res.status(200).send(req.session.user);
+        } else {
+            const newUser = await db.collection('users').add({email, name, gender, state, dob:'', description:'', profile_pic: '', profile_pics: []});
+            req.session.user = {email, id:newUser.id, profile_pic: '', name, gender, dob:'', state, description:'', profile_pics:[]};
+            return res.status(200).send(req.session.user);
+        }
+
     }
 }

@@ -1,45 +1,14 @@
 
 import React, { Component } from "react";
 import { Menu, Container, Button } from "semantic-ui-react";
+import {Link} from 'react-router-dom';
 import "semantic-ui-css/semantic.min.css";
-import { NavLink, Link} from 'react-router-dom'
-import SignedOutMenu from "../Menus/SignedOutMenu";
-import SignedInMenu from "../Menus/SignedInMenu";
-import {firebase} from '../../../firebaseConfig/firebase';
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import axios from "axios";
+import { NavLink} from 'react-router-dom'
+import {connect} from 'react-redux';
+
 
 class NavBar extends Component {
-  state= {
-    authenticated: false,
-    auth: null
-  }
-  uiConfig = {
-    signInFlow: 'popup',
-    signInOptions: [
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID
-    ],
-    callbacks: {
-      signInSuccess: () => false
-    }
-  }
-  componentDidMount = () => {
-
-  }
-  handleSignIn = () => {
-    this.setState({
-      authenticated: true
-    })
-  }
-  handleSignOut = () => {
-    this.setState({
-      authenticated:false
-    })
-    this.props.history.push('/')
-  }
   render() {
-    console.log(this.state.auth)
-    const {authenticated} = this.state;
     return (
       <Menu inverted fixed="top">
         <Container>
@@ -47,22 +16,28 @@ class NavBar extends Component {
             <img src="/assets/logo.png" alt="logo" />
             Social-events
           </Menu.Item>
-            <Menu.Item as={NavLink} to='/events' name="Events" />
-            <Menu.Item as={NavLink} to='/people' name="People" />
-            <Menu.Item>
-              <Button as={Link} to='/createEvent' floated="right" positive inverted content="Create Event" />
-            </Menu.Item>
-            {authenticated ? <SignedInMenu signOut={this.handleSignOut}/> : <SignedOutMenu signIn={this.handleSignIn}/>}
-            <StyledFirebaseAuth
-                  uiConfig={this.uiConfig}
-                  firebaseAuth={firebase.auth()}
-                />
-              {/* <Menu.Item name="Profile" />
-            <Menu.Item></Menu.Item> */}
+          <Menu.Item as={NavLink} to='/events' name="Events" />
+          <Menu.Item as={NavLink} to='/people' name="People" />
+          <Menu.Item>
+            <Button as={Link} to='/createEvent' floated="right" positive inverted content="Create Event" />
+          </Menu.Item>
+          
+          <Menu.Item as={NavLink} to='/login' name="Login" position="right">
+            <Button basic inverted content="Login"  />
+           
+            <Button
+              basic
+              inverted
+              content="Sign Out"
+              style={{ marginLeft: "0.5em" }}
+            />
+          </Menu.Item>
+          <Menu.Item name="Profile" />
+          <Menu.Item></Menu.Item>
         </Container>
       </Menu>
     );
   }
 }
-
-export default NavBar;
+const mapStateToProps = reduxState => reduxState;
+export default connect(mapStateToProps)(NavBar);

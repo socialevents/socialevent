@@ -10,8 +10,8 @@ import SettingsDashboard from '../../features/user/Settings/SettingsDashboard';
 import EventForm from '../../features/event/EventForm/EventForm';
 import EventDetailedPage  from '../../features/event/EventDetails/EventDetailedPage'
 import HomePage from '../../features/home/HomePage';
-
-
+import Login from '../../features/nav/Login/Login';
+import Register from '../../features/nav/Register/Register';
 
 function App() {
   return (
@@ -24,8 +24,8 @@ function App() {
         <NavBar/>
         <Container className="main">
         <Switch>
-        
-        
+        <Route path='/register' component={Register} />
+        <Route path='/login' component={Login} />
         <Route path='/events' component={EventDashboard} /> 
         <Route path='/event/:id' component={EventDetailedPage} />
         <Route path='/people' component={PeopleDashboard} />

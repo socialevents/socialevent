@@ -3,7 +3,7 @@ import { Button, Grid, Header, Form, Message, Image, Segment} from 'semantic-ui-
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import "semantic-ui-css/semantic.min.css";
-import firebase from '../../../../src/firebaseConfig/firebase'
+import {firebase} from '../../../../src/firebaseConfig/firebase'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import {getUser} from '../../../redux/authReducer';
 import axios from 'axios'
@@ -34,7 +34,15 @@ import axios from 'axios'
     }
     componentDidMount = () => {
       firebase.auth().onAuthStateChanged(user => {
-        console.log(user);
+        if (user) {
+          axios.post(`/api/googleLogin`, {id:user.uid})
+          .then(res => {
+
+          }).catch(err => {
+            firebase.auth().signOut();
+            this.props.history.push('/register');
+          })
+        }
       })
     }
 
