@@ -31,6 +31,7 @@ module.exports = {
         const authorization = bcrypt.compareSync(password, users[0].hash);
         if (!authorization) return res.status(401).send('Username or Password is incorrect');
         delete users[0].hash
+        users[0].id = users[0].id;
         req.session.user = users[0];
         return res.status(200).send(req.session.user);
     },
@@ -60,10 +61,16 @@ module.exports = {
         res.sendStatus(200);
     },
     updateUser: async (req, res) => {
+        console.log(req.body)
         const {id} = req.params;
         const db = firebase.firestore();
         const data = await db.collection('users').doc(`${id}`).set(req.body, { merge: true });
-        res.sendStatus(200);
+        const newUser = await db.collection('users').doc(`${id}`).get();
+        let user = newUser.data();
+        user.id = newUser.id;
+        delete user.hash;
+        req.session.user = user;
+        res.status(200).send(req.session.user);
     },
     googleLogin: (req, res) => {
         const {id} = req.body;
@@ -71,21 +78,26 @@ module.exports = {
         db.collection('users').doc(`${id}`).get().then(function(doc) {
             if (!doc.data()) return res.status(401).send('Register first');
             req.session.user = doc.data();
+            req.session.user.id = doc.id;
             return res.status(200).send(req.session.user);
         });
     },
     googleRegister: async (req, res) => {
-        const {id, name, gender, state, email} = req.body;
+        const {id, name, gender, state, email, profile_pic} = req.body;
         const db = firebase.firestore();
         const data = await db.collection('users').doc(`${id}`).get().then( async function(doc) {
             if (doc.data()) {
                 req.session.user = doc.data();
                 return res.status(200).send(req.session.user);
             } else {
-                const newUser = await db.collection('users').doc(`${id}`).set({email, name, gender, state, dob:'', description:'', profile_pic: '', profile_pics: []});
-                req.session.user = {email, id, profile_pic: '', name, gender, dob:'', state, description:'', profile_pics:[]};
+                const newUser = await db.collection('users').doc(`${id}`).set({email, name, gender, state, dob:'', description:'', profile_pic, profile_pics: []});
+                req.session.user = {email, id, profile_pic, name, gender, dob:'', state, description:'', profile_pics:[]};
                 return res.status(200).send(req.session.user);
             }
         })
+    },
+    quickLogin: async (req, res) => {
+        console.log(req.session.user);
+        return res.status(200).send(req.session.user);
     }
 }

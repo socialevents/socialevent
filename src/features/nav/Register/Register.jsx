@@ -27,10 +27,10 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
         const {gender, state} = this.state;
         console.log(gender, state)
         if (user) {
-          const {displayName, email} = user;
-          axios.post('/api/googleRegister', {id:user.uid, name:displayName, gender, state, email})
+          const {displayName, email, photoURL} = user;
+          axios.post('/api/googleRegister', {id:user.uid, name:displayName, gender, state, email, profile_pic:photoURL})
           .then(res => {
-            this.props.getUser(res.data.user);
+            this.props.getUser(res.data);
             this.props.history.push('/events');
           })
         }

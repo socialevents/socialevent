@@ -37,7 +37,7 @@ import axios from 'axios'
         if (user) {
           axios.post(`/api/googleLogin`, {id:user.uid})
           .then(res => {
-            this.props.getUser(res.data.user);
+            this.props.getUser(res.data);
             this.props.history.push('/events');
           }).catch(err => {
             console.log(err);
