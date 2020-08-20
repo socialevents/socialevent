@@ -34,24 +34,31 @@ import axios from 'axios'
     }
     componentDidMount = () => {
       firebase.auth().onAuthStateChanged(user => {
-        console.log(user);
+        if (user) {
+          axios.post(`/api/googleLogin`, {id:user.uid})
+          .then(res => {
+            this.props.getUser(res.data);
+            this.props.history.push('/events');
+          }).catch(err => {
+            console.log(err);
+            this.props.history.push('/register');
+          })
+        }
       })
     }
 
         login(){
             let user = {email: this.state.email, password: this.state.password}
             axios.post('/api/login', user).then(res=>{
-                    this.props.getUser(res.data.user);
+                    this.props.getUser(res.data);
                     this.props.history.push('/events');
-                }).catch(res=>{
-                 
-                    console.log(res)
+                }).catch(err=>{
+                  console.log(err)
                 })
         }
 
         
    render() {
-     console.log('hello')
         return (
 
             <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
@@ -74,7 +81,7 @@ import axios from 'axios'
                     type='password' onChange={event=>{this.setState({password: event.target.value})}}
                   />
         
-                  <Button color='red' fluid size='large'>
+                  <Button onClick={this.login} color='red' fluid size='large'>
                     Login 
                   </Button>
                 <StyledFirebaseAuth

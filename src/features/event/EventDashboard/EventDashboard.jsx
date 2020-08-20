@@ -2,58 +2,59 @@ import React, { Component } from 'react'
 import { Grid, Button } from 'semantic-ui-react'
 import EventList from '../EventsList/EventList'
 import EventForm from '../EventForm/EventForm';
+import axios from 'axios';
 import cuid from 'cuid';
 // import { addMilliseconds } from 'date-fns';
 
 const eventsDashboard = [
-  {
-    id: '1',
-    title: 'Trip to Tower of London',
-    date: '2018-03-27',
-    category: 'culture',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
-    city: 'San Francisco, CA',
-    venue: "Theater, San Francisco, SF,  CA",
-    hostedBy: 'Bob',
-    hostPhotoURL: 'https://randomuser.me/api/portraits/men/20.jpg',
-    attendees: [
-      {
-        id: 'a',
-        name: 'Bob',
-        photoURL: 'https://randomuser.me/api/portraits/men/20.jpg'
-      },
-      {
-        id: 'b',
-        name: 'Tom',
-        photoURL: 'https://randomuser.me/api/portraits/men/22.jpg'
-      }
-    ]
-  },
-  {
-    id: '2',
-    title: 'Trip to Punch and Judy Pub',
-    date: '2018-03-28',
-    category: 'drinks',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
-    city: 'San Francisco, CA',
-    venue: 'Theater, San Francisco, SF, CA',
-    hostedBy: 'Tom',
-    hostPhotoURL: 'https://randomuser.me/api/portraits/men/22.jpg',
-    attendees: [
-      {
-        id: 'b',
-        name: 'Tom',
-        photoURL: 'https://randomuser.me/api/portraits/men/22.jpg'
-      },
-      {
-        id: 'a',
-        name: 'Bob',
-        photoURL: 'https://randomuser.me/api/portraits/men/20.jpg'
-      }
-    ]
-  }
+  // {
+  //   id: '1',
+  //   title: 'Trip to Tower of London',
+  //   date: '2018-03-27',
+  //   category: 'culture',
+  //   description:
+  //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
+  //   city: 'San Francisco, CA',
+  //   venue: "Theater, San Francisco, SF,  CA",
+  //   hostedBy: 'Bob',
+  //   hostPhotoURL: 'https://randomuser.me/api/portraits/men/20.jpg',
+  //   attendees: [
+  //     {
+  //       id: 'a',
+  //       name: 'Bob',
+  //       photoURL: 'https://randomuser.me/api/portraits/men/20.jpg'
+  //     },
+  //     {
+  //       id: 'b',
+  //       name: 'Tom',
+  //       photoURL: 'https://randomuser.me/api/portraits/men/22.jpg'
+  //     }
+  //   ]
+  // },
+  // {
+  //   id: '2',
+  //   title: 'Trip to Punch and Judy Pub',
+  //   date: '2018-03-28',
+  //   category: 'drinks',
+  //   description:
+  //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
+  //   city: 'San Francisco, CA',
+  //   venue: 'Theater, San Francisco, SF, CA',
+  //   hostedBy: 'Tom',
+  //   hostPhotoURL: 'https://randomuser.me/api/portraits/men/22.jpg',
+  //   attendees: [
+  //     {
+  //       id: 'b',
+  //       name: 'Tom',
+  //       photoURL: 'https://randomuser.me/api/portraits/men/22.jpg'
+  //     },
+  //     {
+  //       id: 'a',
+  //       name: 'Bob',
+  //       photoURL: 'https://randomuser.me/api/portraits/men/20.jpg'
+  //     }
+  //   ]
+  // }
 ]
 
 
@@ -63,7 +64,15 @@ const eventsDashboard = [
             isOpen: false,
             selectedEvent: null
          }
-     
+  
+  componentDidMount = () => {
+    axios.get('/api/events')
+    .then(res => {
+      this.setState({
+        events: res.data
+      })
+    })
+  }
 
   handleFormOpen = () => {
     this.setState({
@@ -79,16 +88,20 @@ const eventsDashboard = [
   }
 
   handleUpdateEvent = (updatedEvent) => {
-    this.setState({
-      events: this.state.events.map(event => {
-        if (event.id === updatedEvent.id) {
-          return Object.assign({}, updatedEvent)
-        } else {
-          return event 
-        }
-      }),
-      isOpen:false,
-      selectedEvent:null
+    console.log(updatedEvent.id);
+    axios.put(`/api/events/${updatedEvent.id}`, updatedEvent)
+    .then(res => {
+      this.setState({
+        events: this.state.events.map(event => {
+          if (event.id === updatedEvent.id) {
+            return Object.assign({}, updatedEvent)
+          } else {
+            return event 
+          }
+        }),
+        isOpen:false,
+        selectedEvent:null
+      })
     })
   }
 
@@ -100,19 +113,23 @@ const eventsDashboard = [
   }
   
   handleCreateEvent = (newEvent) => {
-    newEvent.id = cuid();
-    newEvent.hostPhotoURL = '/assets/user.png';
-    const updatedEvents= [...this.state.events, newEvent];
-    this.setState({
-      events: updatedEvents,
-      isOpen: false
+    axios.post('/api/events/', newEvent).then(res => {
+      newEvent.id = res.data;
+      newEvent.hostPhotoURL = '/assets/user.png';
+      const updatedEvents= [newEvent, ...this.state.events];
+      this.setState({
+        events: updatedEvents,
+        isOpen: false
+      })
     })
   }
 
   handleDeleteEvent = (eventId) => () => {
-    const updatedEvents = this.state.events.filter(e => e.id !== eventId);
-    this.setState({
-      events: updatedEvents
+    axios.delete(`/api/events/${eventId}`).then(res => {
+      const updatedEvents = this.state.events.filter(e => e.id !== eventId);
+      this.setState({
+        events: updatedEvents
+      })
     })
   }
 
