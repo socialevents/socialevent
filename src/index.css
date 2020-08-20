@@ -225,8 +225,8 @@ body {
 .img-grid {
 margin:20px auto;
 display: grid;
-grid-template-columns: 1fr 1fr 1fr;
-grid-gap: 40px;
+grid-template-columns: 4fr 4fr 4fr;
+grid-gap: 10px;
 }
 
 .img-wrap {
@@ -240,7 +240,7 @@ opacity: 0.8;
 .img-wrap img{
 min-width: 100%;
 min-height: 100%;
-max-width: 150%;
+max-width: 100%;
 position: absolute;
 top: 0;
 left: 0;
@@ -252,8 +252,8 @@ left: 0;
   position: fixed;
   top:0;
   left:0;
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
   background: rgba(0,0,0,0.5);
 }
 
