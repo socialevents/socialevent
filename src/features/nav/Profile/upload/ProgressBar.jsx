@@ -2,12 +2,20 @@
 import React, { useEffect } from 'react';
 import useStorage from '../upload/hooks/useStorage';
 import { motion } from 'framer-motion';
+import {connect} from 'react-redux';
+import {getUser} from '../../../../redux/authReducer';
 
-const ProgressBar = ({ file, setFile }) => {
-  const { progress, url } = useStorage(file);
+
+
+const ProgressBar = ({ file, setFile, user, getUser }) => {
+  const { progress, url } = useStorage(file, user.id);
 
   useEffect(() => {
     if (url) {
+      let newUser = {...user};
+      console.log(newUser);
+      newUser.profile_pics.push(url);
+      getUser(newUser);
       setFile(null);
     }
   }, [url, setFile]);
@@ -20,4 +28,6 @@ const ProgressBar = ({ file, setFile }) => {
   );
 } 
 
-export default ProgressBar;
+const mapStateToProps = reduxState => reduxState;
+
+export default connect(mapStateToProps, {getUser})(ProgressBar);
