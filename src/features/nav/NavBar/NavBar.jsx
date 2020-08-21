@@ -42,6 +42,17 @@ class NavBar extends Component {
             <img src="/assets/logo.png" alt="logo" />
             Social-events
           </Menu.Item>
+<<<<<<< HEAD
+            <Menu.Item as={NavLink} to='/events' name="Events" />
+            <Menu.Item as={NavLink} to='/test' name="Test" />
+            {authenticated && <Menu.Item as={NavLink} to='/people' name="People" />}
+            <Menu.Item>
+              <Button as={Link} to='/createEvent' floated="right" positive inverted content="Create Event" />
+            </Menu.Item>
+            {authenticated ? <SignedInMenu signOut={this.handleSignOut}/> : <SignedOutMenu signIn={this.handleSignIn}/>}
+              {/* <Menu.Item name="Profile" />
+            <Menu.Item></Menu.Item> */}
+=======
           <Menu.Item as={NavLink} to='/events' name="Events" />
           <Menu.Item as={NavLink} to='/people' name="People" />
           <Menu.Item>
@@ -60,6 +71,7 @@ class NavBar extends Component {
             /> */}
           {/* </Menu.Item> */}
           {this.props.user.name ? <SignedInMenu signOut={this.signOut} name={this.props.user.name} profile_pic={this.props.user.profile_pic}></SignedInMenu> : <SignedOutMenu/>}
+>>>>>>> master
         </Container>
       </Menu>
     );

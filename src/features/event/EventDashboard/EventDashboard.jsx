@@ -1,6 +1,14 @@
 import React, { Component } from 'react'
-import { Grid, Button } from 'semantic-ui-react'
+import { Grid } from 'semantic-ui-react'
 import EventList from '../EventsList/EventList'
+<<<<<<< HEAD
+import { connect } from 'react-redux'
+import { deleteEvent } from '../eventActions'
+
+const mapState = (state) => ({
+  events: state.events
+})
+=======
 import EventForm from '../EventForm/EventForm';
 import axios from 'axios';
 import cuid from 'cuid';
@@ -56,9 +64,20 @@ const eventsDashboard = [
   //   ]
   // }
 ]
+>>>>>>> master
 
+const actions = {
+  deleteEvent
+}
 
  class EventDashboard extends Component {
+<<<<<<< HEAD
+        
+  handleDeleteEvent = eventId => () => {
+    this.props.deleteEvent(eventId)
+    }
+  
+=======
             state = {
             events: eventsDashboard,
             isOpen: false,
@@ -132,18 +151,17 @@ const eventsDashboard = [
       })
     })
   }
+>>>>>>> master
 
     render() {
-      const{selectedEvent} = this.state
+      const {events} = this.props
         return (
             <Grid>
                 <Grid.Column width={10}>
-                    <EventList deleteEvent={this.handleDeleteEvent} onEventOpen={this.handleOpenEvent} events={this.state.events}/>
+                    <EventList deleteEvent={this.handleDeleteEvent} events={events}/>
                 </Grid.Column>
                 <Grid.Column width={6}>
-                    <Button onClick={this.handleFormOpen} positive content='Create Event'/>
-                    {this.state.isOpen && 
-                     <EventForm updateEvent={this.handleUpdateEvent} selectedEvent={selectedEvent} createEvent={this.handleCreateEvent} handleCancel={this.handleCancel}/>}
+                   
                     
                 </Grid.Column>
             </Grid>
@@ -151,4 +169,4 @@ const eventsDashboard = [
     }
   }
 
-export default EventDashboard;
+export default connect(mapState, actions)(EventDashboard);
