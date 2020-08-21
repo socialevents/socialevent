@@ -1,172 +1,33 @@
-import React, { Component } from 'react'
-import { Grid } from 'semantic-ui-react'
-import EventList from '../EventsList/EventList'
-<<<<<<< HEAD
-import { connect } from 'react-redux'
-import { deleteEvent } from '../eventActions'
+import React, { Component } from 'react';
+import { Grid } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { deleteEvent } from '../eventActions';
+import EventList from '../EventsList/EventList';
 
-const mapState = (state) => ({
+const mapState = state => ({
   events: state.events
-})
-=======
-import EventForm from '../EventForm/EventForm';
-import axios from 'axios';
-import cuid from 'cuid';
-// import { addMilliseconds } from 'date-fns';
-
-const eventsDashboard = [
-  // {
-  //   id: '1',
-  //   title: 'Trip to Tower of London',
-  //   date: '2018-03-27',
-  //   category: 'culture',
-  //   description:
-  //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
-  //   city: 'San Francisco, CA',
-  //   venue: "Theater, San Francisco, SF,  CA",
-  //   hostedBy: 'Bob',
-  //   hostPhotoURL: 'https://randomuser.me/api/portraits/men/20.jpg',
-  //   attendees: [
-  //     {
-  //       id: 'a',
-  //       name: 'Bob',
-  //       photoURL: 'https://randomuser.me/api/portraits/men/20.jpg'
-  //     },
-  //     {
-  //       id: 'b',
-  //       name: 'Tom',
-  //       photoURL: 'https://randomuser.me/api/portraits/men/22.jpg'
-  //     }
-  //   ]
-  // },
-  // {
-  //   id: '2',
-  //   title: 'Trip to Punch and Judy Pub',
-  //   date: '2018-03-28',
-  //   category: 'drinks',
-  //   description:
-  //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sollicitudin ligula eu leo tincidunt, quis scelerisque magna dapibus. Sed eget ipsum vel arcu vehicula ullamcorper.',
-  //   city: 'San Francisco, CA',
-  //   venue: 'Theater, San Francisco, SF, CA',
-  //   hostedBy: 'Tom',
-  //   hostPhotoURL: 'https://randomuser.me/api/portraits/men/22.jpg',
-  //   attendees: [
-  //     {
-  //       id: 'b',
-  //       name: 'Tom',
-  //       photoURL: 'https://randomuser.me/api/portraits/men/22.jpg'
-  //     },
-  //     {
-  //       id: 'a',
-  //       name: 'Bob',
-  //       photoURL: 'https://randomuser.me/api/portraits/men/20.jpg'
-  //     }
-  //   ]
-  // }
-]
->>>>>>> master
+});
 
 const actions = {
   deleteEvent
-}
+};
 
- class EventDashboard extends Component {
-<<<<<<< HEAD
-        
+class EventDashboard extends Component {
   handleDeleteEvent = eventId => () => {
-    this.props.deleteEvent(eventId)
-    }
-  
-=======
-            state = {
-            events: eventsDashboard,
-            isOpen: false,
-            selectedEvent: null
-         }
-  
-  componentDidMount = () => {
-    axios.get('/api/events')
-    .then(res => {
-      this.setState({
-        events: res.data
-      })
-    })
-  }
+    this.props.deleteEvent(eventId);
+  };
 
-  handleFormOpen = () => {
-    this.setState({
-      selectedEvent: null,
-      isOpen:true
-    })
+  render() {
+    const { events } = this.props;
+    return (
+      <Grid>
+        <Grid.Column width={10}>
+          <EventList deleteEvent={this.handleDeleteEvent} events={events} />
+        </Grid.Column>
+        <Grid.Column width={6} />
+      </Grid>
+    );
   }
-
-  handleCancel = () => {
-    this.setState({
-      isOpen: false
-    })
-  }
-
-  handleUpdateEvent = (updatedEvent) => {
-    console.log(updatedEvent.id);
-    axios.put(`/api/events/${updatedEvent.id}`, updatedEvent)
-    .then(res => {
-      this.setState({
-        events: this.state.events.map(event => {
-          if (event.id === updatedEvent.id) {
-            return Object.assign({}, updatedEvent)
-          } else {
-            return event 
-          }
-        }),
-        isOpen:false,
-        selectedEvent:null
-      })
-    })
-  }
-
-  handleOpenEvent = (eventToOpen) => () => {
-    this.setState({
-      selectedEvent: eventToOpen,
-      isOpen: true
-    })
-  }
-  
-  handleCreateEvent = (newEvent) => {
-    axios.post('/api/events/', newEvent).then(res => {
-      newEvent.id = res.data;
-      newEvent.hostPhotoURL = '/assets/user.png';
-      const updatedEvents= [newEvent, ...this.state.events];
-      this.setState({
-        events: updatedEvents,
-        isOpen: false
-      })
-    })
-  }
-
-  handleDeleteEvent = (eventId) => () => {
-    axios.delete(`/api/events/${eventId}`).then(res => {
-      const updatedEvents = this.state.events.filter(e => e.id !== eventId);
-      this.setState({
-        events: updatedEvents
-      })
-    })
-  }
->>>>>>> master
-
-    render() {
-      const {events} = this.props
-        return (
-            <Grid>
-                <Grid.Column width={10}>
-                    <EventList deleteEvent={this.handleDeleteEvent} events={events}/>
-                </Grid.Column>
-                <Grid.Column width={6}>
-                   
-                    
-                </Grid.Column>
-            </Grid>
-        )
-    }
-  }
+}
 
 export default connect(mapState, actions)(EventDashboard);
