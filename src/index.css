@@ -212,3 +212,56 @@ body {
 .dropzone--isActive {
   border: dashed 3px green;
 }
+
+/* progress bar styles */
+
+.progress-bar {
+  height: 5px;
+  background: green;
+  margin-top: 20px;
+}
+
+/* image grid */
+.img-grid {
+margin:20px auto;
+display: grid;
+grid-template-columns: 4fr 4fr 4fr;
+grid-gap: 10px;
+}
+
+.img-wrap {
+overflow: hidden;
+height: 0;
+padding: 50% 0;
+position: relative;
+opacity: 0.8;
+}
+
+.img-wrap img{
+min-width: 100%;
+min-height: 100%;
+max-width: 100%;
+position: absolute;
+top: 0;
+left: 0;
+}
+
+/* modal styles */
+
+.backdrop {
+  position: fixed;
+  top:0;
+  left:0;
+  width: 90%;
+  height: 90%;
+  background: rgba(0,0,0,0.5);
+}
+
+.backdrop img{
+  display: block;
+  max-width: 60%;
+  max-height: 80%;
+  margin: 60px auto;
+  box-shadow: 3px 5px 7px rgba(0,0,0,0.5);
+  border: 3px solid white;
+}
