@@ -68,7 +68,7 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
         return (
             <div class="ui form segment">
             <Header as='h2' color='black' textAlign='center'>
-               <img class="ui massive image"src='https://res.cloudinary.com/dfgz2wntk/image/upload/v1597780245/logo3icon_snbatb.png'  /> Register your new account
+               <img class="ui massive image"src='https://res.cloudinary.com/dfgz2wntk/image/upload/v1598028887/logofinal_bmdvhz.png'  /> Register your new account
              </Header>
              <div class="field">
    <label>Name</label>

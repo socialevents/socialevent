@@ -17,7 +17,7 @@ import "semantic-ui-css/semantic.min.css";
         return (
             <div class="ui form segment">
             <Header as='h2' color='black' textAlign='center'>
-               <img class="ui massive image"src='https://res.cloudinary.com/dfgz2wntk/image/upload/v1597780245/logo3icon_snbatb.png'  /> About Events
+               <img class="ui massive image"src='https://res.cloudinary.com/dfgz2wntk/image/upload/v1598028887/logofinal_bmdvhz.png'  /> About Events
              </Header>
 
           <div class="ui floating  message">
@@ -45,7 +45,7 @@ import "semantic-ui-css/semantic.min.css";
 
         <div class="ui form segment">
             <Header as='h2' color='black' textAlign='center'>
-               <img class="ui massive image"src='https://res.cloudinary.com/dfgz2wntk/image/upload/v1597780245/logo3icon_snbatb.png'  /> Meet the Developers
+               <img class="ui massive image"src='https://res.cloudinary.com/dfgz2wntk/image/upload/v1598028887/logofinal_bmdvhz.png'  /> Meet the Developers
              </Header>
       
 

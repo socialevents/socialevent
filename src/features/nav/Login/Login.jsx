@@ -73,9 +73,11 @@ class Login extends Component {
           <Header as="h2" color="black" textAlign="center">
             <img
               class="ui massive image"
-              src="https://res.cloudinary.com/dfgz2wntk/image/upload/v1597780245/logo3icon_snbatb.png"
+              src="https://res.cloudinary.com/dfgz2wntk/image/upload/v1598028887/logofinal_bmdvhz.png"
             />{" "}
-            Log-in to your account
+             <div className='login'>
+          Log-in to your account
+              </div>
           </Header>
           <Form size="large">
             <Segment stacked>
