@@ -10187,12 +10187,7 @@
     "node-fetch": {
       "version": "2.6.0",
       "resolved": "https://registry.npmjs.org/node-fetch/-/node-fetch-2.6.0.tgz",
-<<<<<<< HEAD
-      "integrity": "sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA==",
-      "optional": true
-=======
       "integrity": "sha512-8dG4H5ujfvFiqDmVu9fQ5bOHUC15JMjMY/Zumv26oOvvVJjM67KF8koCWIabKQ1GJIa9r2mMZscBq/TbdOcmNA=="
->>>>>>> master
     },
     "node-forge": {
       "version": "0.9.0",
