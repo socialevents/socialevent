@@ -68,20 +68,22 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
         return (
             <div class="ui form segment">
             <Header as='h2' color='black' textAlign='center'>
-               <img class="ui massive image"src='https://res.cloudinary.com/dfgz2wntk/image/upload/v1597780245/logo3icon_snbatb.png'  /> Register your new account
+               <img class="ui massive circular image"
+              src="https://res.cloudinary.com/dfgz2wntk/image/upload/v1598043093/socialogowhite_p8ql3j.png"  /> <div className='login'>Register your new account</div>
              </Header>
              <div class="field">
-   <label>Name</label>
+   <label className='register'>Name</label>
    <input type="text" name="name" placeholder="Name" onChange={event=>{this.setState({name: event.target.value})}} required></input>
  </div>
 
  <div class="field">
-   <label>Email</label>
+   <label className='register'>Email</label>
    <input type="text" name="email" placeholder="Email" onChange={event=>{this.setState({email: event.target.value})}} required></input>
  </div>
 
  
  <div class="field">
+ <label className='register'>Gender</label>
  <div class="field">
    <select value={this.state.gender} onChange={(e) => this.setState({gender: e.target.value})}>
      <option value="">Gender</option>
@@ -92,7 +94,7 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
  </div>
    </div>
    <div class="field">
-     <label>State</label>
+     <label className='register'>State</label>
      <select class="ui fluid dropdown" value={this.state.state} onChange={(e) => this.setState({state: e.target.value})}>
        <option value="">State</option>
    <option value="Alabama">Alabama</option>
@@ -149,7 +151,7 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
      </select>
    </div>
    <div class="field">
-   <label>Password</label>
+   <label className='register'>Password</label>
    <input name="password" type="password" onChange={event=>{this.setState({password: event.target.value})}} required></input>
  </div>
  <div class="inline field">
