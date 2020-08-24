@@ -7,7 +7,7 @@ import { reduxForm, Field } from 'redux-form'
 import TextInput from '../../../app/common/form/TextInput'
 import TextArea from '../../../app/common/form/TextArea'
 import SelectInput from '../../../app/common/form/SelectInput'
-
+import axios from 'axios';
 
 const mapState = (state, ownProps) => {
   const eventId = ownProps.match.params.id;
@@ -17,7 +17,8 @@ const mapState = (state, ownProps) => {
     event = state.events.filter(event => event.id === eventId) [0];
   }
   return {
-    initialValues: event
+    initialValues: event,
+    user: state.users.user
   }
 }
 
@@ -40,18 +41,28 @@ const category = [
 
 
   onFormSubmit = values => {
+    console.log(this.props)
     if (this.props.initialValues.id) {
       this.props.updateEvent(values)
       this.props.history.goBack();
     } else{
       const newEvent = {
+        title: '',
+        category: 'music',
+        description: '',
+        city: '',
+        venue: '',
+        date: '',
         ...values,
         id:cuid(),
-        hostPhotoURL: '/assets/user.png',
-        hostedBy: 'Bob'
+        hostPhotoURL: this.props.user.profile_pic,
+        hostedBy: this.props.user.name,
+        attendees: []
       }
-      this.props.createEvent(newEvent)
-      this.props.history.push('/events')
+      axios.post('/api/events', newEvent).then(res => {
+        this.props.createEvent(newEvent)
+        this.props.history.push('/events')
+      });
     }
   }
     render() {

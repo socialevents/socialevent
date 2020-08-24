@@ -3,7 +3,7 @@ import { Grid } from 'semantic-ui-react'
 import EventList from '../EventsList/EventList'
 import { connect } from 'react-redux'
 import { deleteEvent } from '../eventActions'
-
+import axios from 'axios';
 const mapState = (state) => ({
   events: state.events
 })
@@ -13,6 +13,18 @@ const actions = {
 }
 
  class EventDashboard extends Component {
+   state = {
+     events: []
+   }
+
+   componentDidMount = () => {
+    axios.get('/api/events')
+    .then(res => {
+      this.setState({
+        events: res.data
+      })
+    })
+  }
         
   handleDeleteEvent = eventId => () => {
     this.props.deleteEvent(eventId)
@@ -20,7 +32,8 @@ const actions = {
   
 
     render() {
-      const {events} = this.props
+      const {events} = this.state
+      console.log(events);
         return (
             <Grid>
                 <Grid.Column width={10}>
