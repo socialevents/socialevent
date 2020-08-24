@@ -1,6 +1,10 @@
 import React from 'react'
 import { Segment, Image, Item, Header, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import axios from 'axios';
+import { connect } from 'react-redux';
+import {leaveEvent, joinEvent} from '../../event/eventActions';
+
 
 const eventImageStyle = {
     filter: 'brightness(30%)'
@@ -15,7 +19,23 @@ const eventImageTextStyle = {
     color: 'white'
 };
 
-const EventDetailedHeader = ({event}) => {
+const EventDetailedHeader = ({event, user, leaveEvent, joinEvent}) => {
+
+    const join = () => {
+      console.log(user.id, user.profile_pic, user.name)
+      axios.put(`/api/events/join/${event.id}`, {userId:user.id, photoURL: user.profile_pic, name:user.name})
+      .then(res => {
+        joinEvent({userId:user.id, photoURL: user.profile_pic, name:user.name}, event);
+      });
+    }
+
+    const leave = () => {
+      axios.put(`/api/events/leave/${event.id}`, {userId:user.id, photoURL: user.profile_pic, name:user.name})
+      .then(res => {
+        leaveEvent({userId:user.id, photoURL: user.profile_pic, name:user.name}, event);
+      })
+    }
+
     return (
            <Segment.Group>
               <Segment basic attached="top" style={{ padding: '0' }}>
@@ -41,8 +61,8 @@ const EventDetailedHeader = ({event}) => {
               </Segment>
         
               <Segment attached="bottom">
-                <Button>Cancel My Place</Button>
-                <Button color="teal">JOIN THIS EVENT</Button>
+                <Button onClick={leave}>Cancel My Place</Button>
+                <Button onClick={join} color="teal">JOIN THIS EVENT</Button>
         
                 <Button as={Link} to={`/manage/${event.id}`} color="orange" floated="right">
                   Manage Event
@@ -52,4 +72,6 @@ const EventDetailedHeader = ({event}) => {
     )
 }
 
-export default EventDetailedHeader
+const mapStateToProps = reduxState => reduxState.users;
+
+export default connect(mapStateToProps, {joinEvent, leaveEvent})(EventDetailedHeader);

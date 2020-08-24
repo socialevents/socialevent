@@ -11,6 +11,7 @@ import SignedInMenu from '../Menus/SignedInMenu';
 import SignedOutMenu from '../Menus/SignedOutMenu';
 import axios from "axios";
 import authenticated from 'authenticated'
+import { getEvents } from '../../event/eventActions'
 
 
 class NavBar extends Component {
@@ -23,6 +24,10 @@ class NavBar extends Component {
     axios.get('/api/quickLogin')
     .then(res => {
       this.props.getUser(res.data);
+    })
+    axios.get('/api/events')
+    .then(res => {
+      this.props.getEvents(res.data);
     })
   }
 
@@ -58,4 +63,4 @@ class NavBar extends Component {
   }
 }
 const mapStateToProps = reduxState => reduxState.users;
-export default connect(mapStateToProps, {clearUser, getUser})(NavBar);
+export default connect(mapStateToProps, {clearUser, getUser, getEvents})(NavBar);
