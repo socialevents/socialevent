@@ -35,6 +35,8 @@ app.get("/api/events", eventsCtrl.getEvents);
 app.get("/api/events/:id", eventsCtrl.getEvent);
 app.post("/api/events", eventsCtrl.addEvent);
 app.put("/api/events/:id", eventsCtrl.updateEvent);
+app.put("/api/events/join/:id", eventsCtrl.joinEvent);
+app.put("/api/events/leave/:id", eventsCtrl.leaveEvent);
 app.delete("/api/events/:id", eventsCtrl.deleteEvent);
 
 app.post("/api/register", usersCtrl.register);

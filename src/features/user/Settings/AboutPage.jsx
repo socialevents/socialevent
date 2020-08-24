@@ -58,7 +58,7 @@ class AboutPage extends Component {
               {this.state.editView === false ? (
                 <div>
                   <Form.Field>
-                    <label>Description: {description}</label>
+                    <label>{description}</label>
                   </Form.Field>
                   <Button type="edit" onClick={this.toggleEditView}>
                     Edit

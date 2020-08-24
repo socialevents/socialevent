@@ -8,28 +8,35 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 
 const mapState = (state, ownProps) => {
-    // let event = {};
+    const eventId = ownProps.match.params.id;
+    let event = {};
 
-    // if (eventId && state.events.length > 0) {
-    //     event = state.events.filter(event => event.id === eventId)[0]
-    // }
-    // return {
-    //     event
-    // }
+    if (eventId && state.events.length > 0) {
+        event = state.events.filter(event => event.id === eventId)[0]
+    }
+    console.log("UPDATED", event);
+    return {
+        event
+    }
 }
 
 
 const EventDetailedPage = (props) => {
     const [event, setEvent] = useState({});
-    
+    console.log(props.events)
     useEffect(() => {
-        const eventId = props.match.params.id
-        console.log(eventId);
-        axios.get(`/api/events/${eventId}`)
-        .then(res => {
-            setEvent(res.data);
-        })
+        setEvent(props.events.filter(event => event.id === props.match.params.id)[0]);
     }, [])
+    // const [event, setEvent] = useState({});
+    
+    // useEffect(() => {
+    //     const eventId = props.match.params.id
+    //     console.log(eventId);
+    //     axios.get(`/api/events/${eventId}`)
+    //     .then(res => {
+    //         setEvent(res.data);
+    //     })
+    // }, [])
 
     return (
         <div className='grid'>
@@ -46,5 +53,5 @@ const EventDetailedPage = (props) => {
         </div>
     )
 }
-
-export default connect(mapState)(EventDetailedPage);
+const mapStateToProps = reduxState => reduxState;
+export default connect(mapStateToProps)(EventDetailedPage);
