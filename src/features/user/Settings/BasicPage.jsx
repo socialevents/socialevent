@@ -97,7 +97,7 @@ class BasicPage extends Component {
                   </Form.Field>
                   <Form.Field>
                     <label>Birthday</label>
-                    <input onChange={(e) => this.setState({dob: e.target.value})} placeholder="Date of birth" value={this.state.dob} />
+                    <input onChange={(e) => this.setState({dob: e.target.value})} placeholder="Date of birth" value={this.state.dob} type="date"  />
                   </Form.Field>
                   <Form.Field>
                     <label>Hometown</label>

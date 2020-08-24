@@ -97,7 +97,16 @@ module.exports = {
         })
     },
     quickLogin: async (req, res) => {
-        console.log(req.session.user);
-        return res.status(200).send(req.session.user);
+        if (req.session.user) {
+            const db = firebase.firestore();
+            const data = await db.collection('users').doc(`${req.session.user.id}`).get();
+            let user = data.data();
+            delete user.hash;
+            user.id = data.id;
+            req.session.user = user;
+            return res.status(200).send(req.session.user);
+        } else {
+            res.sendStatus(200);
+        }
     }
 }
