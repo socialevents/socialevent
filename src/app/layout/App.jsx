@@ -13,12 +13,14 @@ import HomePage from '../../features/home/HomePage';
 import TestComponent from '../../features/testarea/TestComponent';
 import Login from '../../features/nav/Login/Login';
 import Register from '../../features/nav/Register/Register';
+import ModalManager from '../../features/modals/ModalManager'
 
 
 
 function App() {
   return (
     <div>
+    <ModalManager/>
     <Switch>
     <Route exact path='/' component={HomePage} />
     </Switch>
