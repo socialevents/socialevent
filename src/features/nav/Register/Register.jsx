@@ -44,15 +44,19 @@ class Register extends Component {
     });
   };
 
-  uiConfig = {
-    signInFlow: "popup",
-    signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
-    callbacks: {
-      signInSuccess: (e) => {
-        return false;
-      },
-    },
-  };
+    
+    
+    register(){
+        const {name, email, gender, state, password} = this.state;
+        let user = {"name": name, "email": email, "gender": gender, "state": state, "password": password}
+        axios.post('/api/register', user).then(res=>{
+                this.props.getUser(res.data);
+                this.props.history.push('/events');
+            }).catch(res=>{
+               
+                console.log(res)
+            })
+    }
 
   register() {
     const { name, email, gender, state, password } = this.state;

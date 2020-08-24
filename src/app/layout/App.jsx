@@ -10,6 +10,7 @@ import SettingsDashboard from '../../features/user/Settings/SettingsDashboard';
 import EventForm from '../../features/event/EventForm/EventForm';
 import EventDetailedPage  from '../../features/event/EventDetails/EventDetailedPage'
 import HomePage from '../../features/home/HomePage';
+import TestComponent from '../../features/testarea/TestComponent';
 import Login from '../../features/nav/Login/Login';
 import Register from '../../features/nav/Register/Register';
 
@@ -29,9 +30,11 @@ function App() {
         <Route path='/register' component={Register} />
         <Route path='/login' component={Login} />
         <Route path='/events' component={EventDashboard} /> 
+        <Route path="/test" component={TestComponent} />
         <Route path='/login' component={Login}/>
         <Route path='/register' component={Register}/>
         <Route path='/event/:id' component={EventDetailedPage} />
+        <Route path='/manage/:id' component={EventForm} />
         <Route path='/people' component={PeopleDashboard} />
         <Route path='/profile/:id' component={UserDetailedPage} />
         <Route path='/settings' component={SettingsDashboard} />

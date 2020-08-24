@@ -10,6 +10,7 @@ import {clearUser, getUser} from '../../../redux/authReducer';
 import SignedInMenu from '../Menus/SignedInMenu';
 import SignedOutMenu from '../Menus/SignedOutMenu';
 import axios from "axios";
+import authenticated from 'authenticated'
 
 
 class NavBar extends Component {
@@ -34,7 +35,7 @@ class NavBar extends Component {
   }
 
   render() {
-
+    console.log(this.props);
     return (
       <Menu inverted fixed="top">
         <Container>
@@ -42,28 +43,19 @@ class NavBar extends Component {
             <img src="/assets/logo.png" alt="logo" />
             Social-events
           </Menu.Item>
-          <Menu.Item as={NavLink} to='/events' name="Events" />
-          <Menu.Item as={NavLink} to='/people' name="People" />
-          <Menu.Item>
-            <Button as={Link} to='/createEvent' floated="right" positive inverted content="Create Event" />
-          </Menu.Item>
-          
-          {/* <Menu.Item as={NavLink} to='/login' name="Login" position="right"> */}
-          {/* <Button basic inverted content="Login"  />
-           
-            <Button
-              onClick={this.signOut}
-              basic
-              inverted
-              content="Sign Out"
-              style={{ marginLeft: "0.5em" }}
-            /> */}
-          {/* </Menu.Item> */}
-          {this.props.user.name ? <SignedInMenu signOut={this.signOut} name={this.props.user.name} profile_pic={this.props.user.profile_pic}></SignedInMenu> : <SignedOutMenu/>}
+            <Menu.Item as={NavLink} to='/events' name="Events" />
+            <Menu.Item as={NavLink} to='/test' name="Test" />
+            {authenticated && <Menu.Item as={NavLink} to='/people' name="People" />}
+            <Menu.Item>
+              <Button as={Link} to='/createEvent' floated="right" positive inverted content="Create Event" />
+            </Menu.Item>
+            {this.props.user.name ? <SignedInMenu signOut={this.signOut} name={this.props.user.name} profile_pic={this.props.user.profile_pic}></SignedInMenu> : <SignedOutMenu/>}
+              {/* <Menu.Item name="Profile" />
+            <Menu.Item></Menu.Item> */}
         </Container>
       </Menu>
     );
   }
 }
-const mapStateToProps = reduxState => reduxState;
+const mapStateToProps = reduxState => reduxState.users;
 export default connect(mapStateToProps, {clearUser, getUser})(NavBar);
