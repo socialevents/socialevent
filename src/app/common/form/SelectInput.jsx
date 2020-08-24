@@ -8,7 +8,7 @@ import { Form, Label, Select } from 'semantic-ui-react'
             <Form.Field error={touched && !!error}>
                 <Select
                     value={input.value || null} 
-                    onchage={(e, data) => input.onchage(data.value)}
+                    onChange={(e, data) => input.onChange(data.value)}
                     placeholder={placeholder}
                     options={options}
                     multiple={multiple}
