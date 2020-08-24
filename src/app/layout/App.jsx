@@ -32,6 +32,7 @@ function App() {
         <Route path='/login' component={Login}/>
         <Route path='/register' component={Register}/>
         <Route path='/event/:id' component={EventDetailedPage} />
+        <Route path='/manage/:id' component={EventForm} />
         <Route path='/people' component={PeopleDashboard} />
         <Route path='/profile/:id' component={UserDetailedPage} />
         <Route path='/settings' component={SettingsDashboard} />
