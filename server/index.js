@@ -1,8 +1,11 @@
+const imageController = require('./controllers/imageController');
+
 require('dotenv').config();
 const express = require('express'),
       emailCtrl = require('./controllers/emailController'),
       eventsCtrl = require('./controllers/eventsController'),
       usersCtrl = require('./controllers/usersController'),
+      imgCtrl = require('./controllers/imageController'),
       firebase = require('firebase'),
       session = require('express-session'),
       app = express(),
@@ -35,6 +38,8 @@ app.get("/api/events", eventsCtrl.getEvents);
 app.post("/api/events", eventsCtrl.addEvent);
 app.put("/api/events/:id", eventsCtrl.updateEvent);
 app.delete("/api/events/:id", eventsCtrl.deleteEvent);
+
+app.delete("/api/image/:id", imgCtrl.deleteImage);
 
 app.post("/api/register", usersCtrl.register);
 app.post("/api/login", usersCtrl.login);

@@ -8,6 +8,12 @@ import Modal from "../../nav/Profile/upload/Modal";
 function PhotosPage() {
   const [selectedImg, setSelectedImg] = useState(null);
 
+  // handleDeleteImage = (selectedImg) => {
+  //   axios.delete(`/api/image/${selectedImg}`)
+
+    
+  // }
+
   return (
     <Grid>
     <Grid.Column width={3}>
