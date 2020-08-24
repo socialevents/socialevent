@@ -32,6 +32,7 @@ const EventDetailedPage = (props) => {
     }, [])
 
     return (
+        <div className='grid'>
         <Grid>
             {event ? <><Grid.Column width={10}>
             <EventDetailedHeader event={event}/>
@@ -42,6 +43,7 @@ const EventDetailedPage = (props) => {
             <EventDeatiledSidebar attendees={event.attendees}/>
             </Grid.Column></> : null}
         </Grid>
+        </div>
     )
 }
 

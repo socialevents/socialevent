@@ -287,3 +287,23 @@ left: 0;
   font-family: 'Satisfy';
   
 }
+
+.title{
+  font-family: 'Cuprum';
+  text-shadow: 1px 1px rgb(180, 136, 41);;
+  font-size: 23px;
+}
+
+.host{
+  font-family: "Cuprum";
+}
+
+.segment{
+  box-shadow: 1px 1px 3px grey;
+  margin: 10px;
+  padding: 10px;
+  width: 600px;
+  cursor: pointer;
+}
+
+

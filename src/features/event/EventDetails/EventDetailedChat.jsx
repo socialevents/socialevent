@@ -3,15 +3,15 @@ import { Segment, Header, Comment, Form, Button } from 'semantic-ui-react'
 
 const EventDetailedChat = () => {
     return (
-            <div>
+            <div className='segment'>
               <Segment
                 textAlign="center"
                 attached="top"
                 inverted
-                color="teal"
+                color="black"
                 style={{ border: 'none' }}
               >
-                <Header>Chat about this event</Header>
+                <Header><div className='title'>Chat about this event</div></Header>
               </Segment>
         
               <Segment attached>

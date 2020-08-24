@@ -17,7 +17,7 @@ import "semantic-ui-css/semantic.min.css";
         return (
             <div class="ui form segment">
             <Header as='h2' color='black' textAlign='center'>
-               <img class="ui massive image"src='https://res.cloudinary.com/dfgz2wntk/image/upload/v1598043093/socialogowhite_p8ql3j.png'  /> About Events
+               <img  class="ui small circular image" src='https://res.cloudinary.com/dfgz2wntk/image/upload/v1598043093/socialogowhite_p8ql3j.png'  /> <div className="login">About Events</div>
              </Header>
 
           <div class="ui floating  message">
@@ -45,15 +45,15 @@ import "semantic-ui-css/semantic.min.css";
 
         <div class="ui form segment">
             <Header as='h2' color='black' textAlign='center'>
-               <img class="ui massive image"src='https://res.cloudinary.com/dfgz2wntk/image/upload/v1598043093/socialogowhite_p8ql3j.png'  /> Meet the Developers
+              <div className="login">Meet the Developers </div>
              </Header>
       
 
       <div class="ui cards">
         <div class="card">
     <a class="image">
-      <img src="https://cdn5.vectorstock.com/i/thumb-large/32/09/user-sign-icon-person-symbol-human-avatar-vector-12693209.jpg"/>
-    </a>
+      <img   src="https://cdn5.vectorstock.com/i/thumb-large/32/09/user-sign-icon-person-symbol-human-avatar-vector-12693209.jpg"/>
+    </a> 
     <div class="content">
       <a class="header">AkashDeep(AK) Rattan</a>
       <div class="meta">
