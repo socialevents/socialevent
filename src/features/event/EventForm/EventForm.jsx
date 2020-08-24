@@ -14,6 +14,7 @@ import moment from 'moment'
 import PlaceInput from '../../../app/common/form/PlaceInput'
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import Script from 'react-load-script'
+import axios from 'axios';
 
 
 const mapState = (state, ownProps) => {
@@ -24,7 +25,8 @@ const mapState = (state, ownProps) => {
     event = state.events.filter(event => event.id === eventId) [0];
   }
   return {
-    initialValues: event
+    initialValues: event,
+    user: state.users.user
   }
 }
 
@@ -97,13 +99,22 @@ const validate = combineValidators({
       this.props.history.goBack();
     } else{
       const newEvent = {
+        title: '',
+        category: 'music',
+        description: '',
+        city: '',
+        venue: '',
+        date: '',
         ...values,
         id:cuid(),
-        hostPhotoURL: '/assets/user.png',
-        hostedBy: 'Bob'
+        hostPhotoURL: this.props.user.profile_pic,
+        hostedBy: this.props.user.name,
+        attendees: []
       }
-      this.props.createEvent(newEvent)
-      this.props.history.push('/events')
+      axios.post('/api/events', newEvent).then(res => {
+        this.props.createEvent(newEvent)
+        this.props.history.push('/events')
+      });
     }
   }
     render() {
