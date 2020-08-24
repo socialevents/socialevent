@@ -37,6 +37,7 @@ const EventDetailedHeader = ({event, user, leaveEvent, joinEvent}) => {
     }
 
     return (
+      <div className='segment'>
            <Segment.Group>
               <Segment basic attached="top" style={{ padding: '0' }}>
                 <Image src={`/assets/${event.category}.jpg`} fluid style={eventImageStyle}/>
@@ -45,14 +46,14 @@ const EventDetailedHeader = ({event, user, leaveEvent, joinEvent}) => {
                   <Item.Group>
                     <Item>
                       <Item.Content>
-                        <Header
-                          size="huge"
+                        <header className='title'>
+                        <Header 
                           content={event.title}
-                          style={{ color: 'white' }}
-                        />
+                          style={{ color: 'white'}}
+                        /></header>
                         <p>{event.date}</p>
-                        <p>
-                          Hosted by <strong>{event.hostedBy}</strong>
+                        <p className='login'>
+                          Hosted by <strong className='register'>{event.hostedBy}</strong>
                         </p>
                       </Item.Content>
                     </Item>
@@ -61,14 +62,15 @@ const EventDetailedHeader = ({event, user, leaveEvent, joinEvent}) => {
               </Segment>
         
               <Segment attached="bottom">
-                <Button onClick={leave}>Cancel My Place</Button>
-                <Button onClick={join} color="teal">JOIN THIS EVENT</Button>
+                <Button color="black">Cancel My Place</Button>
+                <Button color="inverted green">JOIN THIS EVENT</Button>
         
-                <Button as={Link} to={`/manage/${event.id}`} color="orange" floated="right">
+                <Button as={Link} to={`/manage/${event.id}`} color="inverted orange" floated="right">
                   Manage Event
                 </Button>
               </Segment>
             </Segment.Group>
+            </div>
     )
 }
 
