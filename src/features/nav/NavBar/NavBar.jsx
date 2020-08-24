@@ -39,13 +39,16 @@ class NavBar extends Component {
       <Menu inverted fixed="top">
         <Container>
           <Menu.Item header as={Link} to='/'>
-            <img src="/assets/logo.png" alt="logo" />
-            Social-events
+            <img class='ui mini circular image' src="https://res.cloudinary.com/dfgz2wntk/image/upload/v1598043049/sociallogoblack_rrijhs.png" alt="logo"  />
+           
+            <div className='navevents'>
+           Events
+            </div>
           </Menu.Item>
-          <Menu.Item as={NavLink} to='/events' name="Events" />
+          <Menu.Item as={NavLink} to='/events'  name="Events" />
           <Menu.Item as={NavLink} to='/people' name="People" />
           <Menu.Item>
-            <Button as={Link} to='/createEvent' floated="right" positive inverted content="Create Event" />
+            <Button as={Link} to='/createEvent' floated="right"  positive inverted content="Create Event" />
           </Menu.Item>
           
           {/* <Menu.Item as={NavLink} to='/login' name="Login" position="right"> */}
