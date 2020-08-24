@@ -6,10 +6,10 @@ import * as serviceWorker from './serviceWorker';
 // import {Provider} from 'react-redux';
 import { Provider } from 'react-redux'
 import {HashRouter, BrowserRouter} from 'react-router-dom';
-import { configureStore } from './app/store/configureStore'
+import store from './redux/store'
 import ScrollToTop from './app/common/util/ScrollToTop'
 
-const store = configureStore();
+// const store = configureStore();
 const Router = process.env.NODE_ENV === 'development' ? HashRouter : BrowserRouter;
 
 ReactDOM.render(
