@@ -32,6 +32,7 @@ firebase.initializeApp(config);
 app.get("/api/email", emailCtrl.sendEmail)
 
 app.get("/api/events", eventsCtrl.getEvents);
+app.get("/api/events/:id", eventsCtrl.getEvent);
 app.post("/api/events", eventsCtrl.addEvent);
 app.put("/api/events/:id", eventsCtrl.updateEvent);
 app.delete("/api/events/:id", eventsCtrl.deleteEvent);

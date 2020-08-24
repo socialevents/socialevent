@@ -35,7 +35,7 @@ class NavBar extends Component {
   }
 
   render() {
-
+    console.log(this.props);
     return (
       <Menu inverted fixed="top">
         <Container>
@@ -49,7 +49,7 @@ class NavBar extends Component {
             <Menu.Item>
               <Button as={Link} to='/createEvent' floated="right" positive inverted content="Create Event" />
             </Menu.Item>
-            {authenticated ? <SignedInMenu signOut={this.handleSignOut}/> : <SignedOutMenu signIn={this.handleSignIn}/>}
+            {this.props.user.name ? <SignedInMenu signOut={this.signOut} name={this.props.user.name} profile_pic={this.props.user.profile_pic}></SignedInMenu> : <SignedOutMenu/>}
               {/* <Menu.Item name="Profile" />
             <Menu.Item></Menu.Item> */}
         </Container>
@@ -57,5 +57,5 @@ class NavBar extends Component {
     );
   }
 }
-const mapStateToProps = reduxState => reduxState;
+const mapStateToProps = reduxState => reduxState.users;
 export default connect(mapStateToProps, {clearUser, getUser})(NavBar);
