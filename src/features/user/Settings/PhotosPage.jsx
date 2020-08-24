@@ -9,6 +9,7 @@ function PhotosPage() {
   const [selectedImg, setSelectedImg] = useState(null);
 
   return (
+    
     <Grid>
     <Grid.Column width={3}>
       <Segment>
@@ -36,6 +37,7 @@ function PhotosPage() {
       </Segment>
     </Grid.Column>
   </Grid>
+ 
   );
 }
 

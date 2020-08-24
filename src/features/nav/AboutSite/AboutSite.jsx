@@ -15,8 +15,10 @@ import "semantic-ui-css/semantic.min.css";
    render() {
      console.log('hello')
         return (
+          <div className='about'>
             <div class="ui form segment">
-            <Header as='h2' color='black' textAlign='center'>
+              
+            <Header as='h2' color='black' textAlign='center' >
                <img  class="ui small circular image" src='https://res.cloudinary.com/dfgz2wntk/image/upload/v1598043093/socialogowhite_p8ql3j.png'  /> <div className="login">About Events</div>
              </Header>
 
@@ -41,6 +43,7 @@ import "semantic-ui-css/semantic.min.css";
             them fingerstache green juice chia small batch selvage slow-carb heirloom roof party tattooed beard franzen 
             craft beer. Cred hammock single-origin coffee stumptown. Crucifix migas butcher man braid succulents before they
              sold out whatever pickled vaporware subway tile kinfolk synth franzen ugh farm-to-table. Adaptogen XOXO wayfarers cloud bread.</p>
+        </div>
         </div>
 
         <div class="ui form segment">

@@ -1,8 +1,8 @@
 
 
-*{
+/* *{
   box-sizing: border-box;
-}
+} */
 
 
 @import url('https://fonts.googleapis.com/css?family=Satisfy');
@@ -306,4 +306,7 @@ left: 0;
   cursor: pointer;
 }
 
+.about{
+  max-width: 1050px;
+}
 

@@ -51,7 +51,7 @@ class AboutPage extends Component {
     return (
       
         <Segment>
-          
+          <div className='segment'>
             <Form>
               {/* profile image */}
               <h1>About Me</h1>
@@ -82,8 +82,9 @@ class AboutPage extends Component {
                 </div>
               )}
             </Form>
-          
+            </div>
         </Segment>
+       
       
     );
   }
