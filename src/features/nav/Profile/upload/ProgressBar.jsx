@@ -28,6 +28,6 @@ const ProgressBar = ({ file, setFile, user, getUser }) => {
   );
 } 
 
-const mapStateToProps = reduxState => reduxState;
+const mapStateToProps = reduxState => reduxState.users;
 
 export default connect(mapStateToProps, {getUser})(ProgressBar);

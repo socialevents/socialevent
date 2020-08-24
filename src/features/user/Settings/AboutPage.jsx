@@ -88,5 +88,5 @@ class AboutPage extends Component {
     );
   }
 }
-const mapStateToProps = reduxState => reduxState;
+const mapStateToProps = reduxState => reduxState.users;
 export default connect(mapStateToProps, {getUser})(AboutPage);
