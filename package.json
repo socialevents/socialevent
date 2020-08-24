@@ -5,6 +5,7 @@
   "main": "./server/index",
   "proxy": "http://localhost:3030",
   "dependencies": {
+    "authenticated": "^0.1.0",
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "cuid": "^2.1.1",

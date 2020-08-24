@@ -2892,6 +2892,14 @@
         }
       }
     },
+    "authenticated": {
+      "version": "0.1.0",
+      "resolved": "https://registry.npmjs.org/authenticated/-/authenticated-0.1.0.tgz",
+      "integrity": "sha1-TxD/E5KMClxAXN67MQ0QdQTjD+M=",
+      "requires": {
+        "dotmap": "~0.1.0"
+      }
+    },
     "autoprefixer": {
       "version": "9.8.6",
       "resolved": "https://registry.npmjs.org/autoprefixer/-/autoprefixer-9.8.6.tgz",
@@ -5459,6 +5467,11 @@
       "version": "5.1.0",
       "resolved": "https://registry.npmjs.org/dotenv-expand/-/dotenv-expand-5.1.0.tgz",
       "integrity": "sha512-YXQl1DSa4/PQyRfgrv6aoNjhasp/p4qs9FjJ4q4cQk+8m4r6k4ZSiEyytKG8f8W9gi8WsQtIObNmKd+tMzNTmA=="
+    },
+    "dotmap": {
+      "version": "0.1.0",
+      "resolved": "https://registry.npmjs.org/dotmap/-/dotmap-0.1.0.tgz",
+      "integrity": "sha1-WC9ACSuvqOjRz2gFeONdkVBos5g="
     },
     "duplexer": {
       "version": "0.1.2",

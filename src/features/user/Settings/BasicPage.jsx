@@ -55,7 +55,7 @@ class BasicPage extends Component {
     this.setState({ editView: !this.state.editView });
   };
 
-  //need endpoint to save changes Jordan-8/17
+
 
   render() {
     const {name, profile_pic, gender, dob, state, profile_pics, email, description} = this.props.user;
