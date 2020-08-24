@@ -9,11 +9,8 @@ const rootReducer = combineReducers({
     form: FormReducer,
     test: testReducer,
     events: eventReducer,
-<<<<<<< HEAD
+    modals: modalsReducer,
     users: authReducer
-=======
-    modals: modalsReducer
->>>>>>> master
 })
 
 export default rootReducer

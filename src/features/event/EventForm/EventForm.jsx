@@ -92,12 +92,8 @@ const validate = combineValidators({
     }
 
   onFormSubmit = values => {
-<<<<<<< HEAD
-    console.log(this.props)
-=======
     values.date = moment(values.date).format()
     values.venueLatLng = this.state.venueLatLng
->>>>>>> master
     if (this.props.initialValues.id) {
       this.props.updateEvent(values)
       this.props.history.goBack();
