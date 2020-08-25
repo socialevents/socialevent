@@ -46,6 +46,7 @@ import "semantic-ui-css/semantic.min.css";
         </div>
         </div>
 
+        <div className='developers'>
         <div class="ui form segment">
             <Header as='h2' color='black' textAlign='center'>
               <div className="login">Meet the Developers </div>
@@ -62,8 +63,8 @@ import "semantic-ui-css/semantic.min.css";
       <div class="meta">
         <a>Full Stack Web Developer</a>
       </div>
-      <div class="description">
-        AK is a Web Developer from California
+      <div class="description1">
+        <b>AK is a Web Developer from California</b>
         <Message>
         <i class="linkedin icon"></i> <a href='#'>Linkedin</a>
               </Message>
@@ -79,8 +80,8 @@ import "semantic-ui-css/semantic.min.css";
       <div class="meta">
         <a>Full Stack Web Developer</a>
       </div>
-      <div class="description">
-        Jordan is a Web Developer from Utah.
+      <div class="description1">
+        <b>Jordan is a Web Developer from Utah.</b>
         <Message>
         <i class="linkedin icon"></i> <a href='#'>Linkedin</a>
               </Message>
@@ -96,8 +97,8 @@ import "semantic-ui-css/semantic.min.css";
       <div class="meta">
         <a>Full Stack Web Developer</a>
       </div>
-      <div class="description">
-        Gabrielle is a Web Developer from Utah.
+      <div class="description1">
+        <b>Gabrielle is a Web Developer from Utah.</b>
         <Message>
         <i class="linkedin icon"></i> <a href='https://www.linkedin.com/in/gabrielle-atwood-261892156/'>Linkedin</a>
               </Message>
@@ -113,8 +114,8 @@ import "semantic-ui-css/semantic.min.css";
       <div class="meta">
         <a>Full Stack Web Developer</a>
       </div>
-      <div class="description">
-        Kaden is a Web Developer from .
+      <div class="description1">
+       <b> Kaden is a Web Developer from .</b>
         <Message>
         <i class="linkedin icon"></i> <a href='#'>Linkedin</a>
               </Message>
@@ -130,14 +131,15 @@ import "semantic-ui-css/semantic.min.css";
       <div class="meta">
         <a>Full Stack Web Developer</a>
       </div>
-      <div class="description">
-        Natalie is a Web Developer from Utah.
+      <div class="description1">
+        <b>Natalie is a Web Developer from Utah.</b>
         <Message>
         <i class="linkedin icon"></i> <a href='#'>Linkedin</a>
               </Message>
       </div>
     </div>
   </div>
+</div>
 </div>
 </div>
 </div>

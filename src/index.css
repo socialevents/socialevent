@@ -328,6 +328,11 @@ left: 0;
   max-width: 1050px;
 }
 
+.about p{
+  font-family: monospace;
+  text-shadow: 1px 1px white;
+}
+
 .eventdet{
   font-family: 'Cuprum';
   font-size: 17px;
@@ -407,6 +412,23 @@ left: 0;
   .signup{
     text-align: center;
   }
+
+  .developers a{
+    font-family: monospace;
+    text-shadow: 1px 1px white;
+  }
+
+  .developers b{
+    font-family: monospace;
+    text-shadow: 1px 1px white;
+  }
+
+  .developers i{
+    color: rgb(14, 31, 177);
+    text-shadow: 1px 1px white;
+  }
+
+
    
 
 

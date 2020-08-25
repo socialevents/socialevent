@@ -7,7 +7,9 @@ import {Link} from 'react-router-dom';
     return (
         <Menu.Item position="right">
             <Link to='/login'>
-            <Button  basic inverted content="Login" />
+            <Button 
+             
+             basic inverted content="Login" />
             </Link>
 
             <Link to='/register'>
@@ -15,7 +17,7 @@ import {Link} from 'react-router-dom';
               basic
               inverted
               content="Register"
-              style={{ marginLeft: "0.5em" }}
+              
               />
               </Link>
           </Menu.Item>
