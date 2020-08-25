@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { deleteEvent, getEvents } from '../eventActions'
 import axios from 'axios';
 import {Link} from 'react-router-dom';
-import AboutSite from '../../nav/AboutSite/AboutSite'
+
 
 const mapState = (state) => ({
   events: state.events
