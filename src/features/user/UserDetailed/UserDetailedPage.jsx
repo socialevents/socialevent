@@ -13,7 +13,6 @@ const mapStateToProps = reduxState => reduxState.users;
 function UserDetailedPage(props) {
     const [selectedImg, setSelectedImg] = useState(null);
 
-
     
         const {name, profile_pic, gender, dob, state, profile_pics, email, description} = props.user;
         

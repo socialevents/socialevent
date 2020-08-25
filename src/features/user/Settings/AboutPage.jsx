@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Button, Segment, Form } from "semantic-ui-react";
+import { Grid, Button, Segment, Form, TextArea } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import {getUser} from '../../../redux/authReducer';
 import {connect} from 'react-redux';
@@ -68,10 +68,10 @@ class AboutPage extends Component {
                 <div>
                   <Form.Field>
                     <label className='basicdetails'>Description</label>
-                    <input
+                    <TextArea
                     value={this.state.description}
                     onChange={(e) => this.setState({description: e.target.value})}
-                     placeholder='Hobbies, allergies, hometown, interesting facts about yourself, etc...'></input>
+                     placeholder='Hobbies, allergies, hometown, interesting facts about yourself, etc...'></TextArea>
                   </Form.Field>
                   <Button type="button" color='red' onClick={this.toggleEditView}>
                     Cancel
