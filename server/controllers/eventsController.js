@@ -13,7 +13,7 @@ module.exports = {
         const db = firebase.firestore();
         const data = await db.collection('events').doc(`${id}`).get();
         let event = data.data();
-        console.log(event)
+        event.id = data.id;
         res.status(200).send(event);
     },
     addEvent: async (req, res) => {
@@ -31,6 +31,26 @@ module.exports = {
         const {id} = req.params;
         const db = firebase.firestore();
         const data = await db.collection('events').doc(`${id}`).set({...req.body});
+        res.sendStatus(200);
+    },
+    joinEvent: async (req, res) => {
+        const {id} = req.params;
+        const {userId, name, photoURL} = req.body;
+        const db = firebase.firestore();
+        console.log(userId, name, photoURL);
+        const data = await db.collection('events').doc(`${id}`).update({ 
+            attendees: firebase.firestore.FieldValue.arrayUnion({id: userId, name, photoURL})
+        });
+        res.sendStatus(200);
+    },
+    leaveEvent: async (req, res) => {
+        const {id} = req.params;
+        const {userId, name, photoURL} = req.body;
+        const db = firebase.firestore();
+        console.log(id, userId, name, photoURL)
+        const data = await db.collection('events').doc(`${id}`).update({
+            attendees: firebase.firestore.FieldValue.arrayRemove({id: userId, name, photoURL})
+        });
         res.sendStatus(200);
     }
 }

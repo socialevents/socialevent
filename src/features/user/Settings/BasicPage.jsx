@@ -55,7 +55,7 @@ class BasicPage extends Component {
     this.setState({ editView: !this.state.editView });
   };
 
-  //need endpoint to save changes Jordan-8/17
+
 
   render() {
     const {name, profile_pic, gender, dob, state, profile_pics, email, description} = this.props.user;
@@ -97,7 +97,7 @@ class BasicPage extends Component {
                   </Form.Field>
                   <Form.Field>
                     <label>Birthday</label>
-                    <input onChange={(e) => this.setState({dob: e.target.value})} placeholder="Date of birth" value={this.state.dob} />
+                    <input onChange={(e) => this.setState({dob: e.target.value})} placeholder="Date of birth" value={this.state.dob} type="date"  />
                   </Form.Field>
                   <Form.Field>
                     <label>Hometown</label>

@@ -8,11 +8,19 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 
 const mapState = (state, ownProps) => {
+<<<<<<< HEAD
+=======
+    const eventId = ownProps.match.params.id;
+>>>>>>> master
     let event = {};
 
     if (eventId && state.events.length > 0) {
         event = state.events.filter(event => event.id === eventId)[0]
     }
+<<<<<<< HEAD
+=======
+    console.log("UPDATED", event);
+>>>>>>> master
     return {
         event
     }
@@ -21,17 +29,23 @@ const mapState = (state, ownProps) => {
 
 const EventDetailedPage = (props) => {
     const [event, setEvent] = useState({});
-    
+    console.log(props.events)
     useEffect(() => {
-        const eventId = props.match.params.id
-        console.log(eventId);
-        axios.get(`/api/events/${eventId}`)
-        .then(res => {
-            setEvent(res.data);
-        })
+        setEvent(props.events.filter(event => event.id === props.match.params.id)[0]);
     }, [])
+    // const [event, setEvent] = useState({});
+    
+    // useEffect(() => {
+    //     const eventId = props.match.params.id
+    //     console.log(eventId);
+    //     axios.get(`/api/events/${eventId}`)
+    //     .then(res => {
+    //         setEvent(res.data);
+    //     })
+    // }, [])
 
     return (
+        <div className='grid'>
         <Grid>
             {event ? <><Grid.Column width={10}>
             <EventDetailedHeader event={event}/>
@@ -42,7 +56,8 @@ const EventDetailedPage = (props) => {
             <EventDeatiledSidebar attendees={event.attendees}/>
             </Grid.Column></> : null}
         </Grid>
+        </div>
     )
 }
-
-export default connect(mapState)(EventDetailedPage);
+const mapStateToProps = reduxState => reduxState;
+export default connect(mapStateToProps)(EventDetailedPage);

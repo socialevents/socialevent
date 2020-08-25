@@ -69,15 +69,19 @@ class Login extends Component {
         style={{ height: "100vh" }}
         verticalAlign="middle"
       >
+       
         <Grid.Column style={{ maxWidth: 450 }}>
+        <Form size="large">
           <Header as="h2" color="black" textAlign="center">
             <img
-              class="ui massive image"
-              src="https://res.cloudinary.com/dfgz2wntk/image/upload/v1597780245/logo3icon_snbatb.png"
+              class="ui massive circular image"
+              src="https://res.cloudinary.com/dfgz2wntk/image/upload/v1598043093/socialogowhite_p8ql3j.png"
             />{" "}
-            Log-in to your account
+             <div className='login'>
+          Log-in to your account
+              </div>
           </Header>
-          <Form size="large">
+          
             <Segment stacked>
               <Form.Input
                 fluid

@@ -19,8 +19,10 @@ import axios from 'axios';
 
 const mapState = (state, ownProps) => {
   const eventId = ownProps.match.params.id;
+  console.log(state.events.data)
   let event = {};
   if (eventId && state.events.length > 0 ) {
+    console.log(state.events);
     event = state.events.filter(event => event.id === eventId) [0];
   }
   return {
@@ -93,9 +95,12 @@ const validate = combineValidators({
   onFormSubmit = values => {
     values.date = moment(values.date).format()
     values.venueLatLng = this.state.venueLatLng
-    if (this.props.initialValues.id) {
-      this.props.updateEvent(values)
-      this.props.history.goBack();
+    if (this.props.match.params.id) {
+      axios.put(`/api/events/${this.props.match.params.id}`, {...values})
+      .then(res => {
+        this.props.updateEvent(values)
+        this.props.history.goBack();
+      })
     } else{
       const newEvent = {
         title: '',
