@@ -49,9 +49,9 @@ class AboutPage extends Component {
   render() {
     const {description} = this.props.user;
     return (
-      
+      <div className='aboutseg'>
         <Segment>
-          <div className='segment'>
+          
             <Form>
               {/* profile image */}
               <h1 className='basicinfo'>About Me</h1>
@@ -82,8 +82,9 @@ class AboutPage extends Component {
                 </div>
               )}
             </Form>
-            </div>
+          
         </Segment>
+        </div>
        
       
     );

@@ -1,37 +1,38 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import { Grid, Container, Image, Segment, Form } from "semantic-ui-react";
 import {connect} from 'react-redux';
-import ImageGrid from '../../nav/Profile/upload/ImageGrid'
 import "semantic-ui-css/semantic.min.css"
 import './UserDetailedPage.css';
-
-//need to connect to backend and delete hardcoded data Jordan- 8/18/20
-
-class UserDetailedPage extends Component{
-    constructor(props){
-        super(props)
-    }
+import ImageGrid from "../../nav/Profile/upload/ImageGrid";
+import Modal from "../../nav/Profile/upload/Modal";
 
 
-    render(){
-        const {name, profile_pic, gender, dob, state, profile_pics, email, description} = this.props.user;
+
+const mapStateToProps = reduxState => reduxState.users;
+
+function UserDetailedPage(props) {
+    const [selectedImg, setSelectedImg] = useState(null);
+
+
+    
+        const {name, profile_pic, gender, dob, state, profile_pics, email, description} = props.user;
         
         return(
-            <div className='aboutme'>
+          <div className='aboutme'>
         <div class='profile-container' >   
         <div class='ui center aligned segment' >
           
             
               
-              <h1 className='profile'>{name}</h1>
+        <h1 className='profile'>{name}</h1>
             
                 <div class='profile-photo-info'>
                 <img class="ui small circular image" src ={profile_pic}/>
                 <div class='profile-personal-info'>
                     {/* <div>Name: {name}</div> */}
-                    <div>Gender: {gender}</div>
-                    <div>Date of Birth: {dob}</div>
-                    <div>Location: {state}</div>
+                    <div className='basicdetails'>Gender: {gender}</div>
+                    <div className='basicdetails'>Date of Birth: {dob}</div>
+                    <div className='basicdetails'>Location: {state}</div>
                 </div>
                 </div>
                 <div className='inverted'>
@@ -42,21 +43,20 @@ class UserDetailedPage extends Component{
                     </div>
                 </div>
                 </div>
-               
-                    <h3 className='phototitle' >My Photos</h3>
-                    
-                 <ImageGrid/>
-                  
+                <h3 className='phototitle' >My Photos</h3>
+                    <ImageGrid setSelectedImg={setSelectedImg} />
+          {selectedImg && (
+          <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
+        )}
                 </div>
             
           
         </div>
-        </div>
-            
+        </div> 
                 
               
         )
-    }
+    
 }
-const mapStateToProps = reduxState => reduxState.users;
+
 export default connect(mapStateToProps)(UserDetailedPage);
