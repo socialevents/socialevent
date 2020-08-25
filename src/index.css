@@ -379,6 +379,7 @@ left: 0;
     
   }
 
+
   .aboutseg{
     box-shadow: 1px 1px 3px grey;
     margin: 40px;
@@ -416,6 +417,7 @@ left: 0;
   .developers a{
     font-family: monospace;
     text-shadow: 1px 1px white;
+   
   }
 
   .developers b{
@@ -427,6 +429,11 @@ left: 0;
     color: rgb(14, 31, 177);
     text-shadow: 1px 1px white;
   }
+
+ 
+  
+
+
 
 
    
