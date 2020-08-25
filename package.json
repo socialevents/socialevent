@@ -2,7 +2,7 @@
   "name": "revents",
   "version": "0.1.0",
   "private": true,
-  "main": "./server/start",
+  "main": "./server/index",
   "proxy": "http://localhost:3030",
   "dependencies": {
     "@types/react-router": "^5.1.8",
