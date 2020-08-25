@@ -2,7 +2,7 @@
   "name": "revents",
   "version": "0.1.0",
   "private": true,
-  "main": "./server/index",
+  "main": "./server/start",
   "proxy": "http://localhost:3030",
   "dependencies": {
     "@types/react-router": "^5.1.8",
@@ -19,6 +19,7 @@
     "framer-motion": "^2.5.5",
     "google-map-react": "^2.0.8",
     "history": "^4.7.2",
+    "@testing-library/jest-dom": "^4.2.4",
     "moment": "^2.22.0",
     "mongoose": "^5.10.0",
     "noImplicitAny": false,
@@ -52,16 +53,18 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.11.0",
     "concurrently": "^5.3.0",
+    "jest": "^26.4.2",
     "nodemon": "^2.0.4",
     "redux-devtools-extension": "^2.13.2",
-    "source-map-explorer": "^1.5.0"
+    "source-map-explorer": "^1.5.0",
+    "supertest": "^4.0.2"
   },
   "browserslist": {
     "production": [
