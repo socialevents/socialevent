@@ -32,7 +32,7 @@ class UserDetailedPage extends Component{
                     <div>Location: {state}</div>
                 </div>
                 </div>
-                <div class='ui raised segment'>
+                <div class='ui segment'>
                     <h3>About Me:</h3>
                     <p>{description}</p>
                 </div>
