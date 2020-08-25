@@ -336,8 +336,12 @@ left: 0;
 }
 
 .form{
- 
+  box-shadow: 1px 1px 3px grey;
+  margin: 1px;
+  padding: 10px;
+  width: 620px;
   cursor: pointer;
+  box-shadow: 3px 5px 7px rgba(0,0,0,0.5);
   }
 
   .description{
@@ -399,4 +403,10 @@ left: 0;
     box-shadow: 3px 5px 7px rgba(0,0,0,0.5);
 
   }
+
+  .signup{
+    text-align: center;
+  }
+   
+
 
