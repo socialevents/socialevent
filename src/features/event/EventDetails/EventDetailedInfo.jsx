@@ -15,6 +15,7 @@ class EventDetailedInfo extends Component {
   }
   render() {
     const {event} = this.props;
+    console.log(event);
     return (
       <div className='segment'>
       <Segment.Group>
