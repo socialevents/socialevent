@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Segment, Grid, Icon, Button} from 'semantic-ui-react'
-import EventDetailedMap from './EventDetailedMap'
+import EventDetailedMap, {lat, lng} from './EventDetailedMap'
 
 
 class EventDetailedInfo extends Component {
