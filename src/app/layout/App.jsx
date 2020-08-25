@@ -14,6 +14,7 @@ import TestComponent from '../../features/testarea/TestComponent';
 import Login from '../../features/nav/Login/Login';
 import Register from '../../features/nav/Register/Register';
 import ModalManager from '../../features/modals/ModalManager'
+import AboutSite from '../../features/nav/AboutSite/AboutSite'
 
 
 
@@ -41,6 +42,7 @@ function App() {
         <Route path='/profile/:id' component={UserDetailedPage} />
         <Route path='/settings' component={SettingsDashboard} />
         <Route path='/createEvent' component={EventForm} />
+        <Route path='/aboutsite' component={AboutSite}/>
         </Switch>
         </Container>
       </div>
