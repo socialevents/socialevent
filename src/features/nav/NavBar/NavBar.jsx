@@ -9,13 +9,9 @@ import { clearUser, getUser } from "../../../redux/authReducer";
 import SignedInMenu from "../Menus/SignedInMenu";
 import SignedOutMenu from "../Menus/SignedOutMenu";
 import axios from "axios";
-<<<<<<< HEAD
-import authenticated from "authenticated";
-=======
 import authenticated from 'authenticated'
 import { getEvents } from '../../event/eventActions'
 
->>>>>>> master
 
 class NavBar extends Component {
   constructor(props) {
@@ -82,10 +78,5 @@ class NavBar extends Component {
     );
   }
 }
-<<<<<<< HEAD
-const mapStateToProps = (reduxState) => reduxState.users;
-export default connect(mapStateToProps, { clearUser, getUser })(NavBar);
-=======
 const mapStateToProps = reduxState => reduxState.users;
 export default connect(mapStateToProps, {clearUser, getUser, getEvents})(NavBar);
->>>>>>> master
