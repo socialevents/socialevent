@@ -9,6 +9,7 @@ const ImageGrid = ({ setSelectedImg, user }) => {
 
   return (
     <div className="img-grid">
+   
       {user.profile_pics &&
         user.profile_pics.map((doc) => {
           console.log(doc);
@@ -21,6 +22,7 @@ const ImageGrid = ({ setSelectedImg, user }) => {
             s
             onClick={() => setSelectedImg(doc)}
           >
+             
             <motion.img
               src={doc}
               alt="uploaded pic"
@@ -29,7 +31,9 @@ const ImageGrid = ({ setSelectedImg, user }) => {
               transition={{ delay: 1 }}
             />
           </motion.div>
+          
         )})}
+     
     </div>
   );
 };

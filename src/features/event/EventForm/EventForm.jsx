@@ -124,31 +124,38 @@ const validate = combineValidators({
     render() {
       const {invalid, submitting, pristine} = this.props;
         return (
+          <div className='form'>
           <Grid>
           <Script
           url="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqQcKdUUMmSR-V54PGTfkwbtA8qDESiks&libraries=places"
           onLoad={this.handleScriptLoaded}
-        />
+        /> 
             <Grid.Column width={10}>
+            
             <Segment>
-            <Header sub color ='teal' content='Event Details'/>
+              
+            <Header /><div className='eventdet'>EVENT DETAILS</div>
                     <Form onSubmit={this.props.handleSubmit(this.onFormSubmit)}>
                       <Field name ='title' type='text' component={TextInput} placeholder='Give your event a name'/>
                       <Field name ='category' type='text' component={SelectInput} options={category} placeholder='What is your event about'/>
                       <Field name ='description' type='text' rows={3} component={TextArea} placeholder='Tell us about your event'/>
-                    <Header sub color ='teal' content='Event Location Details'/>
+                    <Header /><div className='eventdet'>EVENT LOCATION DETAILS</div>
                       <Field name ='city' type='text' component={PlaceInput} option={{types: ['(cities)']}} placeholder='Event City' onSelect={this.handleCitySelect}/>
                       {this.state.scriptLoaded && 
                       <Field name ='venue' type='text' component={PlaceInput} options={{ location: new google.maps.LatLng(this.state.cityLatLng), radius:1000,  types: ['establishment']}} placeholder='Event Venue' onSelect={this.handleVenueSelect}/>}
                       <Field name ='date' type='text' component={DateInput} dateFormat='YYYY-MM-DD HH:mm' timeFormat='HH:mm' showTimeSelect placeholder='Date and Time of the Event'/>
-                      <Button disabled={invalid || submitting || pristine} ositive type="submit">
+                      <Button disabled={invalid || submitting || pristine} color='inverted green' type="submit">
                         Submit
                       </Button>
-                      <Button onClick={this.props.history.goBack} type="button">Cancel</Button>
+                      <Button onClick={this.props.history.goBack} color='red' type="button">Cancel</Button>
                     </Form>
                   </Segment>
+                  
             </Grid.Column>
+            
           </Grid>
+          </div>
+        
                   
         )
     }
