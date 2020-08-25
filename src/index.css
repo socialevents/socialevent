@@ -305,6 +305,25 @@ left: 0;
   box-shadow: 3px 5px 7px rgba(0,0,0,0.5);
 }
 
+.basic{
+  box-shadow: 1px 1px 3px grey;
+  margin: 60px;
+  padding: 9px;
+  width: 622px;
+  cursor: pointer;
+  box-shadow: 3px 5px 7px rgba(0,0,0,0.5);
+}
+
+.basicinfo{
+  font-family: 'Satisfy';
+  text-shadow: 1px 1px rgb(180, 136, 41);
+  font-size: 32px;
+}
+
+.basicdetails{
+  font-family: 'Cuprum';
+}
+
 .about{
   max-width: 1050px;
 }
@@ -319,7 +338,35 @@ left: 0;
 .form{
  
   cursor: pointer;
-  
+  }
 
-}
+  .description{
+    font-family: 'Caveat';
+    font-size: 18px;
+  }
+
+  .img{
+    background-color: #eeeeee;
+    margin: 10px;
+    padding: 10px;
+    width: 300px;
+    color: black;
+    
+    cursor: pointer;
+    box-shadow: 1px 1px 3px grey;
+    position: relative;
+    text-decoration: none !important;
+    border:none;
+  }
+  
+  .img:hover {
+    box-shadow: 5px 10px 10px grey;
+    transform: scale(1.05);
+    transition: 0.25s ease-out;
+    -webkit-transition: .25s ease-out;
+    text-decoration: none !important;
+    
+    
+    
+  }
 
