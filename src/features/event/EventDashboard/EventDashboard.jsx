@@ -4,6 +4,8 @@ import EventList from '../EventsList/EventList'
 import { connect } from 'react-redux'
 import { deleteEvent, getEvents } from '../eventActions'
 import axios from 'axios';
+import {Link} from 'react-router-dom';
+
 
 const mapState = (state) => ({
   events: state.events
@@ -45,7 +47,18 @@ const actions = {
                    
                     
                 </Grid.Column>
+                <div class="ui  vertical footer segment">
+              <div class="ui container">
+                     copyright 2020. All Rights Reserved
+                <header className="login-header">
+                    <div className="host"><Link to='/AboutSite'><b>About Events</b></Link></div>
+                </header>
+   
+                   </div>
+            </div> 
             </Grid>
+
+
         )
     }
   }

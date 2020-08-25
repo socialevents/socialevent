@@ -13,32 +13,36 @@ const mapStateToProps = reduxState => reduxState.users;
 function UserDetailedPage(props) {
     const [selectedImg, setSelectedImg] = useState(null);
 
-
     
         const {name, profile_pic, gender, dob, state, profile_pics, email, description} = props.user;
         
         return(
+          <div className='aboutme'>
         <div class='profile-container' >   
         <div class='ui center aligned segment' >
           
             
               
-              <h1>{name}</h1>
+        <h1 className='profile'>{name}</h1>
             
                 <div class='profile-photo-info'>
                 <img class="ui small circular image" src ={profile_pic}/>
                 <div class='profile-personal-info'>
                     {/* <div>Name: {name}</div> */}
-                    <div>Gender: {gender}</div>
-                    <div>Date of Birth: {dob}</div>
-                    <div>Location: {state}</div>
+                    <div className='basicdetails'>Gender: {gender}</div>
+                    <div className='basicdetails'>Date of Birth: {dob}</div>
+                    <div className='basicdetails'>Location: {state}</div>
                 </div>
                 </div>
-                <div class='ui raised segment'>
-                    <h3>About Me:</h3>
+                <div className='inverted'>
+                <div class='ui segment'>
+                    <h3 className='about'>About Me :</h3>
+                    <div className='description'>
                     <p>{description}</p>
+                    </div>
                 </div>
-                    <h3>My Photos</h3>
+                </div>
+                <h3 className='phototitle' >My Photos</h3>
                     <ImageGrid setSelectedImg={setSelectedImg} />
           {selectedImg && (
           <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
@@ -47,7 +51,7 @@ function UserDetailedPage(props) {
             
           
         </div>
-            
+        </div> 
                 
               
         )

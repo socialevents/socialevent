@@ -12,7 +12,7 @@ function PhotosPage() {
 
   return (
     
-
+    <div className='photoseg'>
       <Segment>
         <UploadForm />
         {isLoading === true
@@ -22,7 +22,7 @@ function PhotosPage() {
         </div>
       </div>)
       :(<div>
-        <h1>My Photos</h1>
+        <h1 className='basicinfo'>My Photos</h1>
         <ImageGrid setSelectedImg={setSelectedImg} />
           {selectedImg && (
           <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
@@ -34,6 +34,7 @@ function PhotosPage() {
         
         
       </Segment>
+      </div>
     
   
   );
