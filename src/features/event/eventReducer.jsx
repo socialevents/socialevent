@@ -21,10 +21,9 @@ import { CREATE_EVENT, DELETE_EVENT, UPDATE_EVENT, GET_EVENTS, JOIN_EVENT, LEAVE
   }
 
   export const leaveEvent = (state, payload) => {
-    let event = state.filter(event => event.id !== payload.event.id)[0];
+    let event = state.filter(event => event.id === payload.event.id)[0];
     let index = event.attendees.findIndex(attendee => attendee.id === payload.data.id);
     event.attendees.splice(index, 1);
-    console.log(event);
     return [
         ...state, Object.assign({}, event)
     ]

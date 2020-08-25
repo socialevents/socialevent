@@ -1,19 +1,21 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import { Grid, Container, Image, Segment, Form } from "semantic-ui-react";
 import {connect} from 'react-redux';
 import "semantic-ui-css/semantic.min.css"
 import './UserDetailedPage.css';
-
-//need to connect to backend and delete hardcoded data Jordan- 8/18/20
-
-class UserDetailedPage extends Component{
-    constructor(props){
-        super(props)
-    }
+import ImageGrid from "../../nav/Profile/upload/ImageGrid";
+import Modal from "../../nav/Profile/upload/Modal";
 
 
-    render(){
-        const {name, profile_pic, gender, dob, state, profile_pics, email, description} = this.props.user;
+
+const mapStateToProps = reduxState => reduxState.users;
+
+function UserDetailedPage(props) {
+    const [selectedImg, setSelectedImg] = useState(null);
+
+
+    
+        const {name, profile_pic, gender, dob, state, profile_pics, email, description} = props.user;
         
         return(
         <div class='profile-container' >   
@@ -37,10 +39,10 @@ class UserDetailedPage extends Component{
                     <p>{description}</p>
                 </div>
                     <h3>My Photos</h3>
-                  <Image as ='a' size='small'  src = 'https://randomuser.me/api/portraits/men/21.jpg'/>
-                  <Image as ='a' size='small'  src = 'https://randomuser.me/api/portraits/men/22.jpg'/>
-                  <Image as ='a' size='small'  src = 'https://randomuser.me/api/portraits/men/23.jpg'/>
-                  <Image as ='a' size='small'  src = 'https://randomuser.me/api/portraits/men/24.jpg'/>
+                    <ImageGrid setSelectedImg={setSelectedImg} />
+          {selectedImg && (
+          <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
+        )}
                 </div>
             
           
@@ -49,7 +51,7 @@ class UserDetailedPage extends Component{
                 
               
         )
-    }
+    
 }
-const mapStateToProps = reduxState => reduxState.users;
+
 export default connect(mapStateToProps)(UserDetailedPage);
