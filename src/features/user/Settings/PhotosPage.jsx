@@ -4,9 +4,11 @@ import { Link } from "react-router-dom";
 import UploadForm from "../../nav/Profile/upload/UploadForm";
 import ImageGrid from "../../nav/Profile/upload/ImageGrid";
 import Modal from "../../nav/Profile/upload/Modal";
+import "semantic-ui-css/semantic.min.css";
 
 function PhotosPage() {
-  const [selectedImg, setSelectedImg] = useState(null);
+  const [selectedImg, setSelectedImg] = useState(null),
+        [isLoading, setIsLoading] = useState(false);
 
   // handleDeleteImage = (selectedImg) => {
   //   axios.delete(`/api/image/${selectedImg}`)
@@ -15,33 +17,32 @@ function PhotosPage() {
   // }
 
   return (
-    <Grid>
-    <Grid.Column width={3}>
+    
+    <div className='photoseg'>
       <Segment>
-        <h2>Settings</h2>
-        <Link to="/settings/basicinfo">
-          <div>Basic Info</div>
-        </Link>
-
-        <Link to="/settings/aboutme">
-          <div>About Me</div>
-        </Link>
-        <Link to="/settings/myphotos">
-          <div>My Photos</div>
-        </Link>
-      </Segment>
-    </Grid.Column>
-    <Grid.Column width={3}>
-      <Segment>
-        <h1>My Photos</h1>
         <UploadForm />
+        {isLoading === true
+        ?(<div class="ui segment">
+        <div class="ui active dimmer">
+          <div class="ui massive text loader">Loading</div>
+        </div>
+      </div>)
+      :(<div>
+        <h1 className='basicinfo'>My Photos</h1>
         <ImageGrid setSelectedImg={setSelectedImg} />
-        {selectedImg && (
+          {selectedImg && (
           <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
         )}
+        </div>
+        
+      )}
+        
+        
+        
       </Segment>
-    </Grid.Column>
-  </Grid>
+      </div>
+    
+  
   );
 }
 

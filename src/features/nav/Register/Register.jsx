@@ -153,7 +153,7 @@ class Register extends Component {
      <input name="terms" type="checkbox"></input>
      <label>I agree to the terms and conditions</label>
      <div class="ui divider"></div>
-     <button onClick={this.register} class="ui button" type="submit">Submit</button>
+     <button onClick={this.register} class="ui positive button"   type="submit">Submit</button>
      <StyledFirebaseAuth
         uiConfig={this.uiConfig}
         firebaseAuth={firebase.auth()}

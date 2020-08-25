@@ -13,7 +13,7 @@ const EventDeatiledSidebar = ({attendees}) => {
                 inverted
                 color='teal'
               >
-                {attendees && attendees.length} {attendees && attendees.length === 1 ? 'Person' : 'Person'} Going
+                {attendees && attendees.length} {attendees && attendees.length === 1 ? 'Person' : 'People'} Going
               </Segment>
               <Segment attached>
                 <Item.Group divided>
@@ -27,7 +27,7 @@ const EventDeatiledSidebar = ({attendees}) => {
                     >
                       Host
                     </Label>}
-                    <Item.Image size='tiny' src={attendee.photoURL} />
+                    <Item.Image size='tiny' circular src={attendee.photoURL} />
                     <Item.Content verticalAlign='middle'>
                       <Item.Header as='h3'>{attendee.name}</Item.Header>
                     </Item.Content>

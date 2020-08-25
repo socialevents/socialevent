@@ -2,15 +2,18 @@ import React, { Component } from 'react'
 import { Grid } from 'semantic-ui-react'
 import EventList from '../EventsList/EventList'
 import { connect } from 'react-redux'
-import { deleteEvent } from '../eventActions'
+import { deleteEvent, getEvents } from '../eventActions'
 import axios from 'axios';
+import {Link} from 'react-router-dom';
+
 
 const mapState = (state) => ({
   events: state.events
 });
 
 const actions = {
-  deleteEvent
+  deleteEvent,
+  getEvents
 };
 
  class EventDashboard extends Component {
@@ -21,6 +24,7 @@ const actions = {
    componentDidMount = () => {
     axios.get('/api/events')
     .then(res => {
+      this.props.getEvents(res.data);
       this.setState({
         events: res.data
       })
@@ -43,7 +47,18 @@ const actions = {
                    
                     
                 </Grid.Column>
+                <div class="ui  vertical footer segment">
+              <div class="ui container">
+                     copyright 2020. All Rights Reserved
+                <header className="login-header">
+                    <div className="host"><Link to='/AboutSite'><b>About Events</b></Link></div>
+                </header>
+   
+                   </div>
+            </div> 
             </Grid>
+
+
         )
     }
   }

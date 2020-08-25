@@ -55,58 +55,58 @@ class BasicPage extends Component {
     this.setState({ editView: !this.state.editView });
   };
 
-  //need endpoint to save changes Jordan-8/17
+
 
   render() {
     const {name, profile_pic, gender, dob, state, profile_pics, email, description} = this.props.user;
     console.log(this.props.user);
     return (
       
-       
+       <div className='basic'>
         <Segment>
           
             <Form>
-              <h1>Basic Info</h1>
+              <h1 className='basicinfo'>Basic Info</h1>
               {this.state.editView === false ? (
                 <div>
                   <Form.Field>
-                    <label>Name: {name} </label>
+                    <label className='basicdetails'>Name: {name} </label>
                   </Form.Field>
                   <Form.Field>
-                    <label>Gender: {gender}</label>
+                    <label className='basicdetails'>Gender: {gender}</label>
                   </Form.Field>
                   <Form.Field>
-              <label>Birthday: {dob}</label>
+              <label className='basicdetails'>Birthday: {dob}</label>
                   </Form.Field>
                   <Form.Field>
-                    <label>Location: {state}</label>
+                    <label className='basicdetails'>Location: {state}</label>
                   </Form.Field>
-                  <Button onClick={this.toggleEditView} type="button">
+                  <Button onClick={this.toggleEditView} type="button" color='inverted green'>
                     Edit
                   </Button>
                 </div>
               ) : (
                 <div>
                   <Form.Field>
-                    <label>Name</label>
+                    <label className='basicdetails'>Name</label>
                     <input onChange={(e) => this.setState({name: e.target.value})} placeholder="Full name" value={this.state.name} />
                   </Form.Field>
                   <Form.Field>
-                    <label>Gender</label>
+                    <label className='basicdetails'>Gender</label>
                     <input onChange={(e) => this.setState({gender: e.target.value})} placeholder="optional" value={this.state.gender} />
                   </Form.Field>
                   <Form.Field>
-                    <label>Birthday</label>
-                    <input onChange={(e) => this.setState({dob: e.target.value})} placeholder="Date of birth" value={this.state.dob} />
+                    <label className='basicdetails'>Birthday</label>
+                    <input onChange={(e) => this.setState({dob: e.target.value})} placeholder="Date of birth" value={this.state.dob} type="date"  />
                   </Form.Field>
                   <Form.Field>
-                    <label>Hometown</label>
+                    <label className='basicdetails'>Hometown</label>
                     <input onChange={(e) => this.setState({state: e.target.value})} placeholder="Where are you from?" value={this.state.state} />
                   </Form.Field>
-                  <Button onClick={this.handleSaveChanges} type="button">
+                  <Button onClick={this.handleSaveChanges}  color='inverted green' type="button">
                     Save Changes
                   </Button>
-                  <Button onClick={this.toggleEditView} type="button">
+                  <Button onClick={this.toggleEditView} color='red' type="button">
                     Cancel
                   </Button>
                 </div>
@@ -114,6 +114,7 @@ class BasicPage extends Component {
             </Form>
           
         </Segment>
+        </div>
       
     );
   }

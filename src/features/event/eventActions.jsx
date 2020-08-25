@@ -1,4 +1,4 @@
-import { CREATE_EVENT, DELETE_EVENT, UPDATE_EVENT} from './eventConstants';
+import { CREATE_EVENT, DELETE_EVENT, UPDATE_EVENT, GET_EVENTS, JOIN_EVENT, LEAVE_EVENT} from './eventConstants';
 
 export const createEvent = (event) => {
     return {
@@ -23,6 +23,36 @@ export const deleteEvent = (eventId) => {
         type: DELETE_EVENT,
         payload: {
             eventId
+        }
+    }
+}
+
+export const getEvents = (data) => {
+    return {
+        type: GET_EVENTS,
+        payload: {
+            data
+        }
+    }
+}
+
+export const joinEvent = (data, event) => {
+    console.log(data, event)
+    return {
+        type: JOIN_EVENT,
+        payload: {
+            event,
+            data
+        }
+    }
+};
+
+export const leaveEvent = (data, event) => {
+    return {
+        type: LEAVE_EVENT,
+        payload: {
+            event,
+            data
         }
     }
 }
