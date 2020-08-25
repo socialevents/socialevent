@@ -87,27 +87,27 @@ class MyAccount extends Component {
   render() {
     const {email} = this.props.user;
     return (
-        <div>
+        <div className='accountsegment'>
         <Segment>
           
             <Form>
               {/* profile image */}
-              <h1>My Account</h1>
+              <h1 className='basicinfo'>My Account</h1>
               <div class="ui divider"></div>
 
               {this.state.editEmail === false ? (
                 <div>
                   <Form.Field>
-                    <h3>Email: {email}</h3>
+                    <h3 >Email: {email}</h3>
                   </Form.Field>
-                  <Button type="edit" onClick={this.toggleEditView}>
+                  <Button type="edit" color='inverted green' onClick={this.toggleEditView}>
                     Change Email
                   </Button>
                 </div>
               ) : (
                 <div>
                   <Form.Field>
-                    <label>New Email</label>
+                    <label >New Email</label>
                     <input
                     // value={this.state.email}
                     onChange={(e) => this.setState({email: e.target.value})}
@@ -127,10 +127,10 @@ class MyAccount extends Component {
                      )
                       :null}
                   </Form.Field>
-                  <Button type="button" onClick={this.toggleEditView}>
+                  <Button type="button"  color='inverted red' onClick={this.toggleEditView}>
                     Cancel
                   </Button>
-                  <Button type="button" onClick={this.handleEmailChanges}>
+                  <Button type="button" color='inverted green' onClick={this.handleEmailChanges}>
                     Save Changes
                   </Button>
                 </div>
@@ -145,7 +145,7 @@ class MyAccount extends Component {
                   <Form.Field>
                     <h3>Password</h3>
                   </Form.Field>
-                  <Button type="edit" onClick={this.togglePasswordView}>
+                  <Button type="edit" color='inverted green' onClick={this.togglePasswordView}>
                     Change Password
                   </Button>
                 </div>
@@ -172,10 +172,10 @@ class MyAccount extends Component {
                      )
                       :null}
                   </Form.Field>
-                  <Button type="button" onClick={this.togglePasswordView}>
+                  <Button type="button" color='inverted red'onClick={this.togglePasswordView}>
                     Cancel
                   </Button>
-                  <Button type="button" onClick={this.handlePasswordChanges}>
+                  <Button type="button" color='inverted green' onClick={this.handlePasswordChanges}>
                     Save Changes
                   </Button>
                 </div>
