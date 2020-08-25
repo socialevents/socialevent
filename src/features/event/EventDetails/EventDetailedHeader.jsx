@@ -62,8 +62,8 @@ const EventDetailedHeader = ({event, user, leaveEvent, joinEvent}) => {
               </Segment>
         
               <Segment attached="bottom">
-                <Button color="black">Cancel My Place</Button>
-                <Button color="inverted green">JOIN THIS EVENT</Button>
+                <Button onClick={leave} color="black">Cancel My Place</Button>
+                <Button onClick={join} color="inverted green">JOIN THIS EVENT</Button>
         
                 <Button as={Link} to={`/manage/${event.id}`} color="inverted orange" floated="right">
                   Manage Event

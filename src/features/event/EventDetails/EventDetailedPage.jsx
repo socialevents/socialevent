@@ -23,20 +23,11 @@ const mapState = (state, ownProps) => {
 
 const EventDetailedPage = (props) => {
     const [event, setEvent] = useState({});
-    console.log(props.events)
-    useEffect(() => {
-        setEvent(props.events.filter(event => event.id === props.match.params.id)[0]);
-    }, [])
-    // const [event, setEvent] = useState({});
     
-    // useEffect(() => {
-    //     const eventId = props.match.params.id
-    //     console.log(eventId);
-    //     axios.get(`/api/events/${eventId}`)
-    //     .then(res => {
-    //         setEvent(res.data);
-    //     })
-    // }, [])
+    useEffect(() => {
+        console.log(props.match.params.id)
+        setEvent(props.events.filter(event => event.id === props.match.params.id)[0]);
+    }, [props.events])
 
     return (
         <div className='grid'>
