@@ -8,14 +8,14 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 
 const mapState = (state, ownProps) => {
-    // let event = {};
+    let event = {};
 
-    // if (eventId && state.events.length > 0) {
-    //     event = state.events.filter(event => event.id === eventId)[0]
-    // }
-    // return {
-    //     event
-    // }
+    if (eventId && state.events.length > 0) {
+        event = state.events.filter(event => event.id === eventId)[0]
+    }
+    return {
+        event
+    }
 }
 
 
