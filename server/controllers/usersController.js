@@ -125,5 +125,13 @@ module.exports = {
         let profile = data.data();
         profile.id= data.id;
         res.status(200).send(profile);
+    },
+
+    getUsers: async (req, res) => {
+        const db = firebase.firestore();
+        const data = await db.collection('users').get();
+        let users = [];
+        data.forEach(doc => users.push({...doc.data(), id:doc.id}));
+        res.status(200).send(users);
     }
 }
