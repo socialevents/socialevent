@@ -305,6 +305,15 @@ left: 0;
   box-shadow: 3px 5px 7px rgba(0,0,0,0.5);
 }
 
+.segmentevent{
+  box-shadow: 1px 1px 3px grey;
+  margin: 10px;
+  padding: 10px;
+  width: 600px;
+  cursor: pointer;
+  box-shadow: 3px 5px 7px rgba(0,0,0,0.5);
+}
+
 .basic{
   box-shadow: 1px 1px 3px grey;
   margin: 60px;
@@ -328,6 +337,11 @@ left: 0;
   max-width: 1050px;
 }
 
+.about p{
+  font-family: monospace;
+  text-shadow: 1px 1px white;
+}
+
 .eventdet{
   font-family: 'Cuprum';
   font-size: 17px;
@@ -336,8 +350,12 @@ left: 0;
 }
 
 .form{
- 
+  box-shadow: 1px 1px 3px grey;
+  margin: 1px;
+  padding: 10px;
+  width: 620px;
   cursor: pointer;
+  box-shadow: 3px 5px 7px rgba(0,0,0,0.5);
   }
 
   .description{
@@ -370,6 +388,7 @@ left: 0;
     
   }
 
+
   .aboutseg{
     box-shadow: 1px 1px 3px grey;
     margin: 40px;
@@ -399,4 +418,38 @@ left: 0;
     box-shadow: 3px 5px 7px rgba(0,0,0,0.5);
 
   }
+
+  .signup{
+    text-align: center;
+  }
+
+  .developers a{
+    font-family: monospace;
+    text-shadow: 1px 1px white;
+   
+  }
+
+  .developers b{
+    font-family: monospace;
+    text-shadow: 1px 1px white;
+  }
+
+  .developers i{
+    color: rgb(14, 31, 177);
+    text-shadow: 1px 1px white;
+  }
+
+  .manageevent{
+    display: flex;
+    justify-content: right;
+  }
+
+ 
+  
+
+
+
+
+   
+
 

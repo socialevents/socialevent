@@ -1,17 +1,16 @@
 import React from "react";
 // import useFirestore from "../upload/hooks/useFirestore";
 import { motion } from "framer-motion";
-import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 
-const ImageGrid = ({ setSelectedImg, user }) => {
-  // const { docs } = useFirestore("users", user.id);
-  console.log(user.profile_pics);
+const UserImageGrid = ({ setSelectedImg, match }) => {
+  
 
   return (
     <div className="img-grid">
    
-      {user.profile_pics &&
-        user.profile_pics.map((doc) => {
+      {match.params.profile_pics &&
+        match.params.profile_pics.map((doc) => {
           console.log(doc);
           return (
           <motion.div
@@ -22,14 +21,13 @@ const ImageGrid = ({ setSelectedImg, user }) => {
             s
             onClick={() => setSelectedImg(doc)}
           >
-            
+             
             <motion.img
               src={doc}
               alt="uploaded pic"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}
-              
             />
           </motion.div>
           
@@ -38,5 +36,5 @@ const ImageGrid = ({ setSelectedImg, user }) => {
     </div>
   );
 };
-const mapStateToProps = reduxState => reduxState.users;
-export default connect(mapStateToProps)(ImageGrid);
+
+export default withRouter(UserImageGrid);
