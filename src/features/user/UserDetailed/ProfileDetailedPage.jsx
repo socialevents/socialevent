@@ -44,7 +44,7 @@ function UserDetailedPage({match}) {
         })
 
       }
-    })
+    }, [])
 
         return(
           <div className='aboutme'>
