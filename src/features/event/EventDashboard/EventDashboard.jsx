@@ -17,27 +17,16 @@ const actions = {
 };
 
  class EventDashboard extends Component {
-   state = {
-     events: []
-   }
 
-   componentDidMount = () => {
-    axios.get('/api/events')
-    .then(res => {
-      this.props.getEvents(res.data);
-      this.setState({
-        events: res.data
-      })
-    })
-  }
         
-  handleDeleteEvent = eventId => () => {
-    this.props.deleteEvent(eventId);
-  };
+
+
+  handleDeleteEvent = (id) => {
+    this.props.deleteEvent(id);
+  }
 
     render() {
-      const {events} = this.state
-      console.log(events);
+      const {events} = this.props
         return (
             <Grid>
                 <Grid.Column width={10}>
