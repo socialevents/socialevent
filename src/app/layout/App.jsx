@@ -14,6 +14,7 @@ import TestComponent from '../../features/testarea/TestComponent';
 import Login from '../../features/nav/Login/Login';
 import Register from '../../features/nav/Register/Register';
 import AboutSite from '../../features/nav/AboutSite/AboutSite'
+import ProfileDetailedPage from '../../features/user/UserDetailed/ProfileDetailedPage'
 
 
 
@@ -38,6 +39,7 @@ function App() {
         <Route path='/manage/:id' component={EventForm} />
         <Route path='/people' component={PeopleDashboard} />
         <Route path='/profile/:id' component={UserDetailedPage} />
+        <Route path='/user/:id' component={ProfileDetailedPage}/>
         <Route path='/settings' component={SettingsDashboard} />
         <Route path='/createEvent' component={EventForm} />
         <Route path='/aboutsite' component={AboutSite}/>

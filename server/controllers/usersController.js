@@ -108,5 +108,14 @@ module.exports = {
         } else {
             res.sendStatus(200);
         }
+    },
+
+    getProfile: async (req, res) => {
+        const {id} = req.params;
+        const db = firebase.firestore();
+        const data = await db.collection('users').doc(`${id}`).get();
+        let profile = data.data();
+        profile.id= data.id;
+        res.status(200).send(profile);
     }
 }
