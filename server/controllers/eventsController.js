@@ -37,7 +37,9 @@ module.exports = {
         const {id} = req.params;
         const {userId, name, photoURL} = req.body;
         const db = firebase.firestore();
-        console.log(userId, name, photoURL);
+        let attendees = [];
+        attendees.push({id: userId, name, photoURL});
+
         const data = await db.collection('events').doc(`${id}`).update({ 
             attendees: firebase.firestore.FieldValue.arrayUnion({id: userId, name, photoURL})
         });
