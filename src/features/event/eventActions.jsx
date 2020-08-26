@@ -37,7 +37,6 @@ export const getEvents = (data) => {
 }
 
 export const joinEvent = (data, event) => {
-    console.log(data, event)
     return {
         type: JOIN_EVENT,
         payload: {

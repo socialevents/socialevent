@@ -3,7 +3,6 @@ import { Grid } from 'semantic-ui-react'
 import EventList from '../EventsList/EventList'
 import { connect } from 'react-redux'
 import { deleteEvent, getEvents } from '../eventActions'
-import axios from 'axios';
 import {Link} from 'react-router-dom';
 
 

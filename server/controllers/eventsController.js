@@ -2,6 +2,7 @@ const firebase = require('firebase');
 
 module.exports = {
     getEvents: async (req, res) => {
+        console.log("GE READ")
         const db = firebase.firestore();
         const data = await db.collection('events').get();
         let allEvents = [];
@@ -9,6 +10,7 @@ module.exports = {
         res.status(200).send(allEvents);
     },
     getEvent: async (req, res) => {
+        console.log('GEV READ')
         const {id} = req.params;
         const db = firebase.firestore();
         const data = await db.collection('events').doc(`${id}`).get();
@@ -17,23 +19,27 @@ module.exports = {
         res.status(200).send(event);
     },
     addEvent: async (req, res) => {
+        console.log('ADD EVENT READ')
         const db = firebase.firestore();
         const data = await db.collection('events').add({...req.body, attendees:[]});
         res.status(200).send(data.id);
     },
     deleteEvent: async (req, res) => {
+        console.log("DELETE EVENT READ")
         const {id} = req.params;
         const db = firebase.firestore();
         const data = await db.collection('events').doc(`${id}`).delete();
         res.sendStatus(200);
     },
     updateEvent: async (req, res) => {
+        console.log("UPDATE EVENT READ");
         const {id} = req.params;
         const db = firebase.firestore();
         const data = await db.collection('events').doc(`${id}`).set({...req.body});
         res.sendStatus(200);
     },
     joinEvent: async (req, res) => {
+        console.log("JOIN EVENT READ")
         const {id} = req.params;
         const {userId, name, photoURL} = req.body;
         const db = firebase.firestore();
@@ -46,10 +52,10 @@ module.exports = {
         res.sendStatus(200);
     },
     leaveEvent: async (req, res) => {
+        console.log("LEAVE EVENT READ")
         const {id} = req.params;
         const {userId, name, photoURL} = req.body;
         const db = firebase.firestore();
-        console.log(id, userId, name, photoURL)
         const data = await db.collection('events').doc(`${id}`).update({
             attendees: firebase.firestore.FieldValue.arrayRemove({id: userId, name, photoURL})
         });
