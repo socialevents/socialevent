@@ -15,6 +15,7 @@ import PlaceInput from '../../../app/common/form/PlaceInput'
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import Script from 'react-load-script'
 import axios from 'axios';
+import { user } from 'firebase-functions/lib/providers/auth'
 
 
 const mapState = (state, ownProps) => {
@@ -102,6 +103,7 @@ const validate = combineValidators({
         this.props.history.goBack();
       })
     } else{
+      console.log('CREATE EVENT')
       const newEvent = {
         title: '',
         category: 'music',
@@ -113,7 +115,8 @@ const validate = combineValidators({
         id:cuid(),
         hostPhotoURL: this.props.user.profile_pic,
         hostedBy: this.props.user.name,
-        attendees: []
+        attendees: [],
+        userId: this.props.user.id
       }
       axios.post('/api/events', newEvent).then(res => {
         this.props.createEvent(newEvent)
