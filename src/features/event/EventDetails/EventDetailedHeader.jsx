@@ -35,7 +35,7 @@ const EventDetailedHeader = ({event, user, leaveEvent, joinEvent}) => {
       })
     }
     return (
-      <div className='segment'>
+      <div className='segmentevent'>
            <Segment.Group>
               <Segment basic attached="top" style={{ padding: '0' }}>
                 <Image src={`/assets/${event.category}.jpg`} fluid style={eventImageStyle}/>
@@ -58,15 +58,20 @@ const EventDetailedHeader = ({event, user, leaveEvent, joinEvent}) => {
                   </Item.Group>
                 </Segment>
               </Segment>
-        
+              <div className='manageevent'>
               <Segment attached="bottom">
                 {user.id !== event.userId ? <><Button onClick={leave} color="black">Cancel My Place</Button>
                 <Button onClick={join} color="inverted green">JOIN THIS EVENT</Button></> : null}
-        
+                </Segment>
+                </div>
+                <div className='manageevent'>
+                <Segment attached="bottom">
                 {user.id === event.userId ? <Button as={Link} to={`/manage/${event.id}`} color="inverted orange" floated="right">
                   Manage Event
                 </Button> : null }
-              </Segment>
+                </Segment>
+                </div>
+              
             </Segment.Group>
             </div>
     )

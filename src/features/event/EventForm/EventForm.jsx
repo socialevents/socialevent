@@ -155,8 +155,12 @@ const validate = combineValidators({
                   </Segment>
                   
             </Grid.Column>
+
+           
             
           </Grid>
+
+         
           </div>
         
                   
