@@ -15,11 +15,7 @@ import PlaceInput from '../../../app/common/form/PlaceInput'
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import Script from 'react-load-script'
 import axios from 'axios';
-<<<<<<< HEAD
-import {Link} from 'react-router-dom'
-=======
 import { user } from 'firebase-functions/lib/providers/auth'
->>>>>>> master
 
 
 const mapState = (state, ownProps) => {
