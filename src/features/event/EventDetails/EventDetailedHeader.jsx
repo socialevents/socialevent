@@ -22,20 +22,18 @@ const eventImageTextStyle = {
 const EventDetailedHeader = ({event, user, leaveEvent, joinEvent}) => {
 
     const join = () => {
-      console.log(user.id, user.profile_pic, user.name)
       axios.put(`/api/events/join/${event.id}`, {userId:user.id, photoURL: user.profile_pic, name:user.name})
       .then(res => {
-        joinEvent({userId:user.id, photoURL: user.profile_pic, name:user.name}, event);
+        joinEvent({id:user.id, photoURL: user.profile_pic, name:user.name}, event);
       });
     }
 
     const leave = () => {
       axios.put(`/api/events/leave/${event.id}`, {userId:user.id, photoURL: user.profile_pic, name:user.name})
       .then(res => {
-        leaveEvent({userId:user.id, photoURL: user.profile_pic, name:user.name}, event);
+        leaveEvent({id:user.id, photoURL: user.profile_pic, name:user.name}, event);
       })
     }
-
     return (
       <div className='segment'>
            <Segment.Group>
@@ -62,12 +60,12 @@ const EventDetailedHeader = ({event, user, leaveEvent, joinEvent}) => {
               </Segment>
         
               <Segment attached="bottom">
-                <Button onClick={leave} color="black">Cancel My Place</Button>
-                <Button onClick={join} color="inverted green">JOIN THIS EVENT</Button>
+                {user.id !== event.userId ? <><Button onClick={leave} color="black">Cancel My Place</Button>
+                <Button onClick={join} color="inverted green">JOIN THIS EVENT</Button></> : null}
         
-                <Button as={Link} to={`/manage/${event.id}`} color="inverted orange" floated="right">
+                {user.id === event.userId ? <Button as={Link} to={`/manage/${event.id}`} color="inverted orange" floated="right">
                   Manage Event
-                </Button>
+                </Button> : null }
               </Segment>
             </Segment.Group>
             </div>
