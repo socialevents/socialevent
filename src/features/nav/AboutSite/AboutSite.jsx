@@ -115,7 +115,7 @@ import "semantic-ui-css/semantic.min.css";
         <a>Full Stack Web Developer</a>
       </div>
       <div class="description1">
-       <b> Kaden is a Web Developer from .</b>
+       <b> Kaden is a Web Developer from Utah.</b>
         <Message>
         <i class="linkedin icon"></i> <a href='https://www.linkedin.com/in/kaden-k-584720116/'>Linkedin</a>
               </Message>

@@ -15,6 +15,7 @@ import PlaceInput from '../../../app/common/form/PlaceInput'
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import Script from 'react-load-script'
 import axios from 'axios';
+import {Link} from 'react-router-dom'
 
 
 const mapState = (state, ownProps) => {
@@ -152,8 +153,12 @@ const validate = combineValidators({
                   </Segment>
                   
             </Grid.Column>
+
+           
             
           </Grid>
+
+         
           </div>
         
                   
