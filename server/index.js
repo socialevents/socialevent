@@ -49,7 +49,7 @@ app.get("/api/session", usersCtrl.sessionLogin);
 
 app.delete('/api/users/:id', usersCtrl.deleteUser);
 app.put('/api/users/:id', usersCtrl.updateUser);
-
+app.get('/api/users', usersCtrl.getUsers)
 app.get('/api/profile/:id', usersCtrl.getProfile);
 
 app.listen(3030, () => console.log('listening'));
