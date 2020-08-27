@@ -14,11 +14,11 @@ const Router = process.env.NODE_ENV === 'development' ? HashRouter : BrowserRout
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <Router>
       <ScrollToTop>
         <App />
         </ScrollToTop>
-    </BrowserRouter>
+    </Router>
   </Provider>,
   document.getElementById("root")
 );
