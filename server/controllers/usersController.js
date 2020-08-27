@@ -6,7 +6,7 @@ module.exports = {
     register: async (req, res) => {
         const db = firebase.firestore();
         const {name, email, gender, state, password} = req.body;
-        console.log(email);
+        console.log("2 READS FOR REGISTER");
         const user = await db.collection('users').where('email', '==', email).get();
         users = [];
         user.forEach(doc => users.push(doc.data()));
@@ -20,6 +20,7 @@ module.exports = {
         return res.status(200).send(req.session.user);
     },
     login: async (req, res) => {
+        console.log("LOGIN READ")
         const db = firebase.firestore();
         const {email, password} = req.body;
         const user = await db.collection('users').where('email', '==', email).get();
@@ -43,6 +44,7 @@ module.exports = {
         if (req.session.user) {
             const db = firebase.firestore();
             const {username} = req.session.user;
+            console.log("SESSION LOGIN READ")
             const user = await db.collection('users').where('username', '==', username).get();
             users = [];
             user.forEach(doc => users.push(doc.id));
@@ -55,12 +57,14 @@ module.exports = {
         
     },
     deleteUser: async (req, res) => {
+        console.log("DELETE USER READ")
         const {id} = req.params;
         const db = firebase.firestore();
         const data = await db.collection('users').doc(`${id}`).delete();
         res.sendStatus(200);
     },
     updateUser: async (req, res) => {
+        console.log("UPDATE USER READ")
         console.log(req.body)
         const {id} = req.params;
         const db = firebase.firestore();
@@ -73,6 +77,7 @@ module.exports = {
         res.status(200).send(req.session.user);
     },
     googleLogin: (req, res) => {
+        console.log("GOOGLE LOGIN READ")
         const {id} = req.body;
         const db = firebase.firestore();
         db.collection('users').doc(`${id}`).get().then(function(doc) {
@@ -83,6 +88,7 @@ module.exports = {
         });
     },
     googleRegister: async (req, res) => {
+        console.log("GOOGLE REGISTER READ")
         const {id, name, gender, state, email, profile_pic} = req.body;
         const db = firebase.firestore();
         const data = await db.collection('users').doc(`${id}`).get().then( async function(doc) {
@@ -97,6 +103,7 @@ module.exports = {
         })
     },
     quickLogin: async (req, res) => {
+        console.log("QUICK LOGIN READ")
         if (req.session.user) {
             const db = firebase.firestore();
             const data = await db.collection('users').doc(`${req.session.user.id}`).get();
@@ -111,11 +118,20 @@ module.exports = {
     },
 
     getProfile: async (req, res) => {
+        console.log("GET PROFILE READ")
         const {id} = req.params;
         const db = firebase.firestore();
         const data = await db.collection('users').doc(`${id}`).get();
         let profile = data.data();
         profile.id= data.id;
         res.status(200).send(profile);
+    },
+
+    getUsers: async (req, res) => {
+        const db = firebase.firestore();
+        const data = await db.collection('users').get();
+        let users = [];
+        data.forEach(doc => users.push({...doc.data(), id:doc.id}));
+        res.status(200).send(users);
     }
 }

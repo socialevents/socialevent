@@ -20,7 +20,9 @@ class NavBar extends Component {
   }
 
   componentDidMount() {
-    axios.get("/api/quickLogin").then((res) => {
+    console.log("LOGGING IN")
+    axios.get('/api/quickLogin')
+    .then(res => {
       this.props.getUser(res.data);
     })
     axios.get('/api/events')

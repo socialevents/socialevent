@@ -4,3 +4,4 @@ export const DELETE_EVENT = "DELETE_EVENT";
 export const GET_EVENTS = "GET_EVENTS";
 export const JOIN_EVENT = "JOIN_EVENT";
 export const LEAVE_EVENT = "LEAVE_EVENT";
+export const SEND_MESSAGE = "SEND_MESSAGE"

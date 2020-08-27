@@ -64,12 +64,13 @@ class Login extends Component {
 
   render() {
     return (
+      
       <Grid
         textAlign="center"
         style={{ height: "100vh" }}
         verticalAlign="middle"
       >
-       
+       <div>
         <Grid.Column style={{ maxWidth: 620 }}>
         <Form size="large">
           <Header as="h2" color="black" textAlign="center">
@@ -115,13 +116,23 @@ class Login extends Component {
                 uiConfig={this.uiConfig}
                 firebaseAuth={firebase.auth()}
               />
-            </Segment>
+              
+               <Message >
+                 <div className='signup'>
+                    New to us? <Link to='/register'><b> Sign Up</b></Link>
+                
+                 </div>
+               </Message>
+                
+             </Segment>
           </Form>
-          <Message>
-            New to us? <Link to='/register'><b>Sign Up</b></Link>
-          </Message>
+         
+         
         </Grid.Column>
+        </div>
       </Grid>
+     
+     
     );
   }
 }

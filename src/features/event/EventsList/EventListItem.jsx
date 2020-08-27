@@ -3,10 +3,20 @@ import { Segment, Item, Icon, List, Button } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 import EventListAttendee from './EventListAttendee'
 import { Link } from 'react-router-dom'
+import {connect} from 'react-redux';
+import axios from 'axios';
 
  class EventListItem extends Component {
+
+    eventDelete = (id) => {
+      axios.delete(`/api/events/${id}`)
+      .then(res => {
+        this.props.deleteEvent(id);
+      })
+    }
+
     render() {
-      const {event, deleteEvent} = this.props
+      const {event, user} = this.props
         return (
           <div className="segment">
                 <Segment.Group>
@@ -14,7 +24,7 @@ import { Link } from 'react-router-dom'
                    <Segment>
                      <Item.Group>
                        <Item>
-                         <Item.Image size="tiny" circular src={event.hostPhotoURL} />
+                         <Item.Image size="tiny" circular src={event.hostPhotoURL ? event.hostPhotoURL : '/assets/user.png'} />
                          <Item.Content>
                            <Item.Header as="a"><div className='title'>{event.title}
                            </div></Item.Header>
@@ -36,14 +46,14 @@ import { Link } from 'react-router-dom'
                    <Segment secondary>
                      <List horizontal>
                      {event.attendees && event.attendees.map((attendee) => (
-                       <EventListAttendee key={attendee.id} attendee={attendee}/>
+                       <EventListAttendee key={attendee.id} attendee={attendee} name={attendee.name}/>
                      ))}
                        
                      </List>
                    </Segment>
                    <Segment clearing>
                     <span>{event.description}</span>
-                    <Button onClick={deleteEvent(event.id)} as="a" color="red" floated="right" content="Delete" />
+                    {user.id === event.userId ? <Button onClick={() => this.eventDelete(event.id)} as="a" color="red" floated="right" content="Delete" /> : null}
                     <Button as={Link} to={`/event/${event.id}`} color="inverted green" floated="right" content="View" />
                    </Segment>
                  </Segment.Group>
@@ -51,5 +61,5 @@ import { Link } from 'react-router-dom'
         )
     }
 }
-
-export default EventListItem;
+const mapStateToProps = reduxState => reduxState.users;
+export default connect(mapStateToProps)(EventListItem);

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 const imageController = require('./controllers/imageController');
+=======
+const eventsController = require('./controllers/eventsController');
+>>>>>>> master
 
 require('dotenv').config();
 const express = require('express'),
@@ -37,6 +41,7 @@ app.get("/api/email", emailCtrl.sendEmail)
 app.get("/api/events", eventsCtrl.getEvents);
 app.get("/api/events/:id", eventsCtrl.getEvent);
 app.post("/api/events", eventsCtrl.addEvent);
+app.post('/api/events/reply/:id', eventsCtrl.reply);
 app.put("/api/events/:id", eventsCtrl.updateEvent);
 app.put("/api/events/join/:id", eventsCtrl.joinEvent);
 app.put("/api/events/leave/:id", eventsCtrl.leaveEvent);
@@ -54,7 +59,7 @@ app.get("/api/session", usersCtrl.sessionLogin);
 
 app.delete('/api/users/:id', usersCtrl.deleteUser);
 app.put('/api/users/:id', usersCtrl.updateUser);
-
+app.get('/api/users', usersCtrl.getUsers)
 app.get('/api/profile/:id', usersCtrl.getProfile);
 
 app.listen(3030, () => console.log('listening'));

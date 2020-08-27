@@ -15,6 +15,7 @@ const useStorage = (file, id) => {
     // references
     const storageRef = projectStorage.ref(file.name);
     const collectionRef = projectFirestore.collection("users").doc(`${id}`);
+    console.log("USE STORE READ");
 
     storageRef.put(file).on(
       "state_changed",
