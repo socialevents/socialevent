@@ -32,23 +32,26 @@ const truncateDesc = (desc, num) => {
 
 const usersMap = users.map((user, i) => (
     <div  key={user.id} user={user} >
+    <div className='people'>
     <Segment>
     <Item.Group style={{color: 'black'}} as={Link} to={`/user/${user.id}`}>
     <Item.Image size='tiny' circular src={user.profile_pic}/>
-    <h3>{user.name}</h3>
-    <p>{truncateDesc(user.description, 100)}</p>
-    
+    <h3 className='username'>{user.name}</h3>
+    <p className='deets'>{truncateDesc(user.description, 100)}</p>
+    <div className ='peeppics'>
     <Image size='tiny'  src={user.profile_pics[0]}/>
     <Image size='tiny'  src={user.profile_pics[1]}/>
     <Image size='tiny'  src={user.profile_pics[2]}/>
+    </div>
     </Item.Group>
     </Segment>
+    </div>
     </div>
 ))
 console.log(users)
     return (
-        <div>
-            <h1>People</h1>
+        <div className='peopleheader'>
+            <h1>Make Some New Friends</h1>
             <p>{usersMap}</p>
         </div>
     )
