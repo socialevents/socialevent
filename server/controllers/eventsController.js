@@ -21,7 +21,7 @@ module.exports = {
     addEvent: async (req, res) => {
         console.log('ADD EVENT READ')
         const db = firebase.firestore();
-        const data = await db.collection('events').add({...req.body, attendees:[]});
+        const data = await db.collection('events').add({...req.body, attendees:[], messages:[]});
         res.status(200).send(data.id);
     },
     deleteEvent: async (req, res) => {
@@ -59,6 +59,15 @@ module.exports = {
         const data = await db.collection('events').doc(`${id}`).update({
             attendees: firebase.firestore.FieldValue.arrayRemove({id: userId, name, photoURL})
         });
+        res.sendStatus(200);
+    },
+    reply: async (req, res) => {
+        const {id} = req.params;
+        const {name, photoURL, userId, text} = req.body;
+        const db = firebase.firestore();
+        const data = await db.collection('events').doc(`${id}`).update({
+            messages: firebase.firestore.FieldValue.arrayUnion({...req.body})
+        })
         res.sendStatus(200);
     }
 }

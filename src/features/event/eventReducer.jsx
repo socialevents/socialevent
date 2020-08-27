@@ -1,5 +1,5 @@
 import { createReducer } from '../../app/common/util/reducerUtil'
-import { CREATE_EVENT, DELETE_EVENT, UPDATE_EVENT, GET_EVENTS, JOIN_EVENT, LEAVE_EVENT } from './eventConstants'
+import { CREATE_EVENT, DELETE_EVENT, UPDATE_EVENT, GET_EVENTS, JOIN_EVENT, LEAVE_EVENT, SEND_MESSAGE } from './eventConstants'
 
    const initialState = [];
       
@@ -32,14 +32,20 @@ import { CREATE_EVENT, DELETE_EVENT, UPDATE_EVENT, GET_EVENTS, JOIN_EVENT, LEAVE
         return event
     });
     return newEvents;
-    // let event = state.filter(event => event.id === payload.event.id)[0];
-    // let index = event.attendees.findIndex(attendee => attendee.id === payload.data.id);
-    // if (index !== -1) {
-    //     event.attendees.splice(index, 1);
-    // }
-    // return [
-    //     ...state, event
-    // ]
+  }
+
+  export const sendMessage = (state, payload) => {
+      console.log(state)
+      let events = Object.assign([], state);
+      let newEvents = events.map(event => {
+          console.log(event.id, payload.event.id)
+          if (event.id === payload.event.id) {
+            event.messages.push(payload.data);
+          }
+          return event
+      })
+      console.log(newEvents)
+      return newEvents;
   }
 
   export const createEvent = (state, payload) => {
@@ -63,6 +69,7 @@ import { CREATE_EVENT, DELETE_EVENT, UPDATE_EVENT, GET_EVENTS, JOIN_EVENT, LEAVE
       [DELETE_EVENT]: deleteEvent,
       [GET_EVENTS]: getEvents,
       [JOIN_EVENT]: joinEvent,
-      [LEAVE_EVENT]: leaveEvent
+      [LEAVE_EVENT]: leaveEvent,
+      [SEND_MESSAGE]: sendMessage
       
   })
