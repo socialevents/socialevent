@@ -1,7 +1,34 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Segment, Header, Comment, Form, Button } from 'semantic-ui-react'
+import {sendMessage} from '../eventActions';
+import {connect} from 'react-redux';
+import axios from 'axios';
 
-const EventDetailedChat = () => {
+const EventDetailedChat = (props) => {
+    const {event, user, sendMessage} = props;
+    const [text, setText] = useState('');
+
+    const reply = () => {
+      axios.post(`/api/events/reply/${event.id}`, {userId:user.id, photoURL:user.profile_pic, name:user.name, text})
+      .then(res => {
+        sendMessage({userId:user.id, photoURL:user.profile_pic, name:user.name, text}, event);
+        setText('');
+      })
+    }
+    
+    const mappedMessages = event.messages ? event.messages.map(message => <Comment>
+      <Comment.Avatar src={message.photoURL} />
+      <Comment.Content>
+        <Comment.Author as="a">{message.name}</Comment.Author>
+        {/* <Comment.Metadata> */}
+          {/* <div>5 days ago</div> */}
+        {/* </Comment.Metadata> */}
+        <Comment.Text>{message.text}</Comment.Text>
+        <Comment.Actions>
+          {/* <Comment.Action>Reply</Comment.Action> */}
+        </Comment.Actions>
+      </Comment.Content>
+    </Comment>) : null;
     return (
             <div className='segment'>
               <Segment
@@ -16,7 +43,7 @@ const EventDetailedChat = () => {
         
               <Segment attached>
                 <Comment.Group>
-                  <Comment>
+                  {/* <Comment>
                     <Comment.Avatar src="/assets/user.png" />
                     <Comment.Content>
                       <Comment.Author as="a">Matt</Comment.Author>
@@ -54,7 +81,7 @@ const EventDetailedChat = () => {
                           <Comment.Metadata>
                             <div>Just now</div>
                           </Comment.Metadata>
-                          <Comment.Text>Jordan you are always so right :)</Comment.Text>
+                          <Comment.Text>Jordan you are always so right :</Comment.Text>
                           <Comment.Actions>
                             <Comment.Action>Reply</Comment.Action>
                           </Comment.Actions>
@@ -75,11 +102,13 @@ const EventDetailedChat = () => {
                         <Comment.Action>Reply</Comment.Action>
                       </Comment.Actions>
                     </Comment.Content>
-                  </Comment>
+                  </Comment> */}
+                  {mappedMessages}
         
                   <Form reply>
-                    <Form.TextArea />
+                    <Form.TextArea value={text} onChange={(e) => setText(e.target.value)} />
                     <Button
+                      onClick={() => reply()}
                       content="Add Reply"
                       labelPosition="left"
                       icon="edit"
@@ -92,4 +121,6 @@ const EventDetailedChat = () => {
     )
 }
 
-export default EventDetailedChat
+const mapStateToProps = reduxState => reduxState.users;
+
+export default connect(mapStateToProps, {sendMessage})(EventDetailedChat);

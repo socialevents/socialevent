@@ -1,3 +1,5 @@
+const eventsController = require('./controllers/eventsController');
+
 require('dotenv').config();
 const express = require('express'),
       emailCtrl = require('./controllers/emailController'),
@@ -34,6 +36,7 @@ app.get("/api/email", emailCtrl.sendEmail)
 app.get("/api/events", eventsCtrl.getEvents);
 app.get("/api/events/:id", eventsCtrl.getEvent);
 app.post("/api/events", eventsCtrl.addEvent);
+app.post('/api/events/reply/:id', eventsCtrl.reply);
 app.put("/api/events/:id", eventsCtrl.updateEvent);
 app.put("/api/events/join/:id", eventsCtrl.joinEvent);
 app.put("/api/events/leave/:id", eventsCtrl.leaveEvent);
