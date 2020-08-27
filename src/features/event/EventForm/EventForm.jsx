@@ -20,10 +20,8 @@ import { user } from 'firebase-functions/lib/providers/auth'
 
 const mapState = (state, ownProps) => {
   const eventId = ownProps.match.params.id;
-  console.log(state.events.data)
   let event = {};
   if (eventId && state.events.length > 0 ) {
-    console.log(state.events);
     event = state.events.filter(event => event.id === eventId) [0];
   }
   return {

@@ -5,7 +5,6 @@ import EventDetailedChat from './EventDetailedChat'
 import EventDeatiledSidebar from './EventDeatiledSidebar'
 import { Grid } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import axios from 'axios'
 
 const mapState = (state, ownProps) => {
     const eventId = ownProps.match.params.id;
@@ -14,7 +13,6 @@ const mapState = (state, ownProps) => {
     if (eventId && state.events.length > 0) {
         event = state.events.filter(event => event.id === eventId)[0]
     }
-    console.log("UPDATED", event);
     return {
         event
     }
