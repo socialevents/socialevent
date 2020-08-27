@@ -7,6 +7,11 @@ const ImageGrid = ({ setSelectedImg, user }) => {
   // const { docs } = useFirestore("users", user.id);
   console.log(user.profile_pics);
 
+  // handleDeleteImage = selectedImg => () => {
+  //   this.props.deleteImage(selectedImg)
+  
+  // }
+
   return (
     <div className="img-grid">
    
@@ -24,6 +29,7 @@ const ImageGrid = ({ setSelectedImg, user }) => {
           >
              
             <motion.img
+            // deleteImage={this.handleDeleteImage}
               src={doc}
               alt="uploaded pic"
               initial={{ opacity: 0 }}

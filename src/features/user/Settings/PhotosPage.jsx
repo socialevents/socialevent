@@ -10,12 +10,6 @@ function PhotosPage() {
   const [selectedImg, setSelectedImg] = useState(null),
         [isLoading, setIsLoading] = useState(false);
 
-  // handleDeleteImage = (selectedImg) => {
-  //   axios.delete(`/api/image/${selectedImg}`)
-
-    
-  // }
-
   return (
     
     <div className='photoseg'>
